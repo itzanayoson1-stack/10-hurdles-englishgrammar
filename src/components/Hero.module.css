@@ -1,0 +1,105 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 3.5rem 1.5rem 3rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  background: #0d0d1a;
+}
+
+.glow {
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255,140,0,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+  border: 1px solid var(--orange-border);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 1.4rem;
+}
+
+.title {
+  font-size: clamp(32px, 6vw, 52px);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.accent { color: var(--orange); }
+
+.brand {
+  font-size: 13px;
+  color: var(--text4);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.tagline {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.desc {
+  font-size: 14px;
+  color: var(--text3);
+  line-height: 1.8;
+  max-width: 440px;
+  margin: 0 auto 2rem;
+}
+
+.progressWrap {
+  max-width: 380px;
+  margin: 0 auto 2rem;
+}
+
+.progressLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text4);
+  margin-bottom: 8px;
+}
+
+.progressBg {
+  height: 5px;
+  background: #1a1a2e;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b00, #ff8c00);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.startBtn {
+  background: var(--orange);
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 13px 32px;
+  border: none;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.startBtn:hover { background: var(--orange2); transform: translateY(-2px); }
+.startBtn:active { transform: translateY(0); }
