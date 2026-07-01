@@ -3,7 +3,7 @@
 .title {
   font-size: 13px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text);
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -13,16 +13,16 @@
 .title::before {
   content: 'QUIZ';
   font-size: 9px;
-  background: var(--orange-bg);
-  color: var(--orange);
+  background: rgba(229, 37, 47, 0.08);
+  color: var(--red);
   padding: 3px 7px;
   border-radius: 3px;
   letter-spacing: 0.1em;
 }
 
 .item {
-  background: #111;
-  border: 1px solid #1a1a1a;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 14px;
   margin-bottom: 10px;
@@ -30,7 +30,7 @@
 
 .q {
   font-size: 13px;
-  color: #ccc;
+  color: var(--text2);
   margin-bottom: 10px;
   line-height: 1.5;
 }
@@ -42,22 +42,22 @@
   width: 100%;
   text-align: left;
   padding: 9px 12px;
-  border: 1px solid #222;
+  border: 1px solid var(--border);
   border-radius: 4px;
-  background: transparent;
-  color: #bbb;
+  background: var(--bg-card);
+  color: var(--text2);
   font-size: 13px;
   transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
 
 .opt:hover:not(.disabled) {
-  border-color: var(--orange);
-  color: #fff;
-  background: var(--orange-bg);
+  border-color: var(--red);
+  color: var(--text);
+  background: rgba(229, 37, 47, 0.05);
 }
 
-.correct { border-color: var(--green) !important; background: var(--green-bg) !important; color: var(--green) !important; }
-.wrong { border-color: var(--red) !important; background: var(--red-bg) !important; color: var(--red) !important; }
+.correct { border-color: var(--success) !important; background: rgba(46, 157, 68, 0.08) !important; color: var(--success) !important; }
+.wrong { border-color: var(--red) !important; background: rgba(229, 37, 47, 0.06) !important; color: var(--red) !important; }
 .disabled { cursor: default; pointer-events: none; }
 
 .feedback {
@@ -68,12 +68,12 @@
   line-height: 1.5;
 }
 
-.ok { background: rgba(76,175,80,0.08); color: #81c784; border: 1px solid rgba(76,175,80,0.2); }
-.fail { background: rgba(244,67,54,0.06); color: #ef9a9a; border: 1px solid rgba(244,67,54,0.15); }
+.ok { background: rgba(46, 157, 68, 0.07); color: var(--success); border: 1px solid rgba(46, 157, 68, 0.2); }
+.fail { background: rgba(229, 37, 47, 0.05); color: var(--red); border: 1px solid rgba(229, 37, 47, 0.15); }
 
 .score {
   font-size: 13px;
-  color: var(--text3);
+  color: var(--text2);
   text-align: center;
   margin: 1.2rem 0;
 }
@@ -81,14 +81,14 @@
 .scoreNum {
   font-size: 26px;
   font-weight: 700;
-  color: var(--orange);
+  color: var(--red);
 }
 
 .clearBtn {
   width: 100%;
   padding: 14px;
-  background: var(--orange);
-  color: #000;
+  background: var(--red);
+  color: #ffffff;
   font-size: 14px;
   font-weight: 700;
   border: none;
@@ -97,17 +97,17 @@
   transition: background 0.2s, transform 0.1s;
 }
 
-.clearBtn:hover { background: var(--orange2); transform: translateY(-1px); }
+.clearBtn:hover { background: #c81f28; transform: translateY(-1px); }
 .clearBtn:active { transform: translateY(0); }
 
 .toast {
-  background: #0d140d;
-  border: 1px solid #2d6a2d;
+  background: rgba(46, 157, 68, 0.06);
+  border: 1px solid rgba(46, 157, 68, 0.3);
   border-radius: 8px;
   padding: 1.5rem;
   text-align: center;
   margin-top: 1rem;
 }
 
-.toastTitle { font-size: 17px; font-weight: 700; color: var(--green); margin-bottom: 6px; }
-.toastSub { font-size: 13px; color: var(--text4); }
+.toastTitle { font-size: 17px; font-weight: 700; color: var(--success); margin-bottom: 6px; }
+.toastSub { font-size: 13px; color: var(--text3); }

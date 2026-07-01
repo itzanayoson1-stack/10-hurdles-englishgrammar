@@ -1,6 +1,6 @@
 .panel {
   background: var(--bg);
-  border-top: 1px solid #111;
+  border-top: 1px solid var(--border);
   min-height: 300px;
 }
 
@@ -13,16 +13,16 @@
 .empty {
   padding: 4rem 1.5rem;
   text-align: center;
-  color: var(--text4);
+  color: var(--text3);
   font-size: 14px;
-  border-top: 1px solid #111;
+  border-top: 1px solid var(--border);
 }
 
 .eyebrow {
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--orange);
+  color: var(--red);
   font-weight: 600;
   margin-bottom: 0.8rem;
 }
@@ -30,14 +30,14 @@
 .title {
   font-size: 24px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text);
   margin-bottom: 0.5rem;
   line-height: 1.2;
 }
 
 .core {
   font-size: 14px;
-  color: var(--text3);
+  color: var(--text2);
   margin-bottom: 2rem;
   font-style: italic;
 }
@@ -46,7 +46,7 @@
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text4);
+  color: var(--text3);
   font-weight: 600;
   margin: 1.8rem 0 0.8rem;
 }
@@ -60,9 +60,9 @@
 .examples { display: flex; flex-direction: column; gap: 10px; }
 
 .example {
-  background: #111;
-  border: 1px solid #1a1a1a;
-  border-left: 3px solid var(--orange);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
   padding: 12px 14px;
   border-radius: 0 6px 6px 0;
 }
@@ -77,15 +77,15 @@
 
 .exKo {
   font-size: 12px;
-  color: var(--text4);
+  color: var(--text3);
 }
 
 .summary {
-  background: #0d0d1a;
+  background: var(--bg-alt);
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 1rem 1.2rem;
   font-size: 13px;
-  color: #aaa;
+  color: var(--text2);
   line-height: 1.75;
 }
