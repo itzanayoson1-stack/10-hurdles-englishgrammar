@@ -1,27 +1,57 @@
 import { useState, useEffect } from 'react'
 
-const STORAGE_KEY = 'g10h_v1'
+const LEVEL_KEY = 'g10h_level'
+const stateKey = (level) => `g10h_v1_${level}`
 
-function loadState() {
+function loadLevel() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    return localStorage.getItem(LEVEL_KEY) || null
+  } catch (e) {
+    return null
+  }
+}
+
+function loadState(level) {
+  try {
+    const raw = localStorage.getItem(stateKey(level))
     if (raw) return JSON.parse(raw)
   } catch (e) {}
   return { cleared: [], quizAnswers: {} }
 }
 
-function saveState(state) {
+function saveState(level, state) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+    localStorage.setItem(stateKey(level), JSON.stringify(state))
   } catch (e) {}
 }
 
 export function useProgress() {
-  const [state, setState] = useState(loadState)
+  const [level, setLevelRaw] = useState(loadLevel)
+  const [state, setState] = useState(() => (level ? loadState(level) : { cleared: [], quizAnswers: {} }))
+
+  // 레벨이 바뀌면 해당 레벨의 저장된 진행 상황을 불러온다
+  useEffect(() => {
+    if (level) setState(loadState(level))
+  }, [level])
 
   useEffect(() => {
-    saveState(state)
-  }, [state])
+    if (level) saveState(level, state)
+  }, [level, state])
+
+  function setLevel(newLevel) {
+    try {
+      localStorage.setItem(LEVEL_KEY, newLevel)
+    } catch (e) {}
+    setLevelRaw(newLevel)
+  }
+
+  function resetLevel() {
+    try {
+      localStorage.removeItem(LEVEL_KEY)
+    } catch (e) {}
+    setLevelRaw(null)
+    setState({ cleared: [], quizAnswers: {} })
+  }
 
   const isCleared = (id) => state.cleared.includes(id)
   const isUnlocked = (id) => id === 1 || state.cleared.includes(id - 1)
@@ -44,6 +74,9 @@ export function useProgress() {
   const resetAll = () => setState({ cleared: [], quizAnswers: {} })
 
   return {
+    level,
+    setLevel,
+    resetLevel,
     cleared: state.cleared,
     isCleared,
     isUnlocked,

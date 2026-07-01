@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react'
-import { HURDLES } from './data/hurdles'
+import { HURDLES, LEVELS } from './data/hurdles'
 import { useProgress } from './hooks/useProgress'
 import Hero from './components/Hero'
 import HurdleMap from './components/HurdleMap'
 import HurdleDetail from './components/HurdleDetail'
 import CompletionScreen from './components/CompletionScreen'
+import LevelSelector from './components/LevelSelector'
 
 export default function App() {
   const [selectedId, setSelectedId] = useState(null)
@@ -12,9 +13,17 @@ export default function App() {
   const detailRef = useRef(null)
 
   const {
+    level, setLevel, resetLevel,
     isCleared, isUnlocked, clearHurdle,
     getQuizAnswers, answerQuiz, resetAll, totalCleared
   } = useProgress()
+
+  // 레벨 미선택 시 레벨 선택 화면만 표시
+  if (!level) {
+    return <LevelSelector onSelect={setLevel} />
+  }
+
+  const currentLevelLabel = LEVELS.find(lv => lv.id === level)?.label || level
 
   function handleStart() {
     const nextId = HURDLES.find(h => !isCleared(h.id))?.id || 1
@@ -45,10 +54,44 @@ export default function App() {
     }
   }
 
-  const selectedHurdle = HURDLES.find(h => h.id === selectedId) || null
+  function handleChangeLevel() {
+    if (window.confirm('레벨을 변경하시겠습니까? (현재 레벨의 진행 상황은 저장되어 있으니 나중에 같은 레벨을 다시 선택하면 이어서 할 수 있습니다)')) {
+      resetLevel()
+      setSelectedId(null)
+    }
+  }
+
+  // 원본 허들 데이터(title/sub/core/body) + 선택된 레벨의 examples/quizzes/summary를 합쳐서
+  // HurdleDetail이 기대하는 형태(hurdle.examples, hurdle.quizzes 등 평평한 구조)로 만들어준다.
+  const baseHurdle = HURDLES.find(h => h.id === selectedId) || null
+  const selectedHurdle = baseHurdle
+    ? {
+        ...baseHurdle,
+        examples: baseHurdle.levels[level].examples,
+        summary: baseHurdle.levels[level].summary,
+        quizzes: baseHurdle.levels[level].quizzes,
+      }
+    : null
 
   return (
     <div>
+      <div style={{
+        display: 'flex', justifyContent: 'center', alignItems: 'center',
+        gap: '8px', padding: '10px', fontSize: '12px', color: 'var(--text3)',
+        borderBottom: '1px solid var(--border)'
+      }}>
+        <span>현재 레벨: <strong style={{ color: 'var(--text)' }}>{currentLevelLabel}</strong></span>
+        <button
+          onClick={handleChangeLevel}
+          style={{
+            background: 'none', border: '1px solid var(--border)', borderRadius: '4px',
+            padding: '2px 10px', fontSize: '11px', color: 'var(--text2)', cursor: 'pointer'
+          }}
+        >
+          레벨 변경
+        </button>
+      </div>
+
       <Hero totalCleared={totalCleared} onStart={handleStart} />
       <div ref={mapRef}>
         <HurdleMap
