@@ -1,24 +1,49 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0a0a0f;
-  --bg2: #0d0d14;
-  --bg3: #111;
-  --border: #1a1a2e;
-  --border2: #222;
-  --text: #e8e8e0;
-  --text2: #bbb;
-  --text3: #888;
-  --text4: #555;
-  --orange: #ff8c00;
-  --orange2: #ffaa33;
-  --orange-bg: rgba(255,140,0,0.1);
-  --orange-border: rgba(255,140,0,0.3);
-  --green: #4caf50;
-  --green-bg: rgba(76,175,80,0.1);
-  --red: #f44336;
-  --red-bg: rgba(244,67,54,0.08);
+  /* 베이스 (변경 없음 — 화이트 유지) */
+  --bg: #ffffff;
+  --bg-alt: #f7f6f4;
+  --bg-card: #ffffff;
+  --border: #ececec;
+
+  --text: #111111;
+  --text2: #555555;
+  --text3: #999999;
+
+  /* 브랜드 포인트 (로고 레드는 유지, 기준점 역할) */
+  --red: #e5252f;
+  --black: #111111;
+
+  --success: #2e9e44;
+  --error: #e5252f;
+
+  /* 허들별 어트렉션 컬러 — v1.2: 채도/명도 보정 (비비드 톤) */
+  --hurdle-1: #ff2d55;   /* 레드 → 핑크빛 비비드 레드 */
+  --hurdle-2: #ff9500;   /* 오렌지 (유지, 이미 비비드) */
+  --hurdle-3: #ffd60a;   /* 옐로우 → 더 형광 */
+  --hurdle-4: #30d158;   /* 그린 → 쨍한 그린 */
+  --hurdle-5: #00c7d4;   /* 시안 → 보정 */
+  --hurdle-6: #0a84ff;   /* 블루 → 더 밝고 채도 높게 */
+  --hurdle-7: #a855f7;   /* 퍼플 → 비비드 */
+  --hurdle-8: #ff2d9e;   /* 핑크 → 쨍하게 */
+  --hurdle-9: #ff6b35;   /* 코랄 → 보정 */
+  --hurdle-10: #111111;  /* 블랙 (완주는 여전히 절제된 임팩트로 유지) */
+
+  /* 레벨 태그 컬러 — v1.2 보정 */
+  --level-ms: #30d158;      /* 중학생 */
+  --level-csat: #0a84ff;    /* 수능 고등학생 */
+  --level-toeic: #ff9500;   /* 토익 */
+  --level-abroad: #a855f7;  /* 해외유학 */
 }
+
+/* 포인트 사용처 (배경은 계속 화이트로 유지):
+   - 허들 카드 상단 컬러 바 (4px)
+   - 진행률 도트/게이지
+   - 완료 뱃지, 정답 체크 아이콘
+   - 레벨 선택 카드의 좌측 바 + hover 시 border 컬러
+   카드 배경 자체나 페이지 배경에는 --hurdle-* / --level-* 컬러를 쓰지 않습니다.
+*/
 
 html { scroll-behavior: smooth; }
 
