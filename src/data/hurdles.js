@@ -1,8 +1,8 @@
 export const LEVELS = [
-  { id: "ms", label: "중학생", shortLabel: "중등", color: "var(--level-ms)" },
-  { id: "csat", label: "수능 준비 고등학생", shortLabel: "고등", color: "var(--level-csat)" },
-  { id: "toeic", label: "토익 준비 대학생·성인", shortLabel: "토익", color: "var(--level-toeic)" },
-  { id: "abroad", label: "해외 유학 준비", shortLabel: "유학", color: "var(--level-abroad)" },
+  { id: "ms", label: "🌱 Explorer", sub: "중학생 · A1–A2", shortLabel: "Explorer", color: "var(--level-ms)" },
+  { id: "csat", label: "🚀 Challenger", sub: "수능 준비 고등학생 · A2–B1", shortLabel: "Challenger", color: "var(--level-csat)" },
+  { id: "toeic", label: "💼 Professional", sub: "토익 준비 대학생·성인 · B1–B2", shortLabel: "Professional", color: "var(--level-toeic)" },
+  { id: "abroad", label: "🌍 Global", sub: "해외 유학 준비 · B2–C1", shortLabel: "Global", color: "var(--level-abroad)" },
 ];
 
 export const HURDLES = [

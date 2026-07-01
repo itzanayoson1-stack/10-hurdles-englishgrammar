@@ -19,7 +19,10 @@ export default function LevelSelector({ onSelect }) {
             onClick={() => onSelect(lv.id)}
           >
             <span className={styles.bar} />
-            <span className={styles.label}>{lv.label}</span>
+            <span className={styles.textCol}>
+              <span className={styles.label}>{lv.label}</span>
+              {lv.sub && <span className={styles.sub}>{lv.sub}</span>}
+            </span>
             <span className={styles.arrow}>→</span>
           </button>
         ))}
