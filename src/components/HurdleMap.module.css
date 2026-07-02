@@ -18,6 +18,8 @@
 }
 
 .card {
+  position: relative;
+  overflow: hidden;
   background: var(--bg-card);
   padding: 1.2rem 1rem;
   cursor: pointer;
@@ -28,6 +30,27 @@
   transition: background 0.15s;
   border-left: 2px solid transparent;
 }
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--hurdle-accent, transparent);
+}
+
+.card[data-hurdle="1"]  { --hurdle-accent: var(--hurdle-1); }
+.card[data-hurdle="2"]  { --hurdle-accent: var(--hurdle-2); }
+.card[data-hurdle="3"]  { --hurdle-accent: var(--hurdle-3); }
+.card[data-hurdle="4"]  { --hurdle-accent: var(--hurdle-4); }
+.card[data-hurdle="5"]  { --hurdle-accent: var(--hurdle-5); }
+.card[data-hurdle="6"]  { --hurdle-accent: var(--hurdle-6); }
+.card[data-hurdle="7"]  { --hurdle-accent: var(--hurdle-7); }
+.card[data-hurdle="8"]  { --hurdle-accent: var(--hurdle-8); }
+.card[data-hurdle="9"]  { --hurdle-accent: var(--hurdle-9); }
+.card[data-hurdle="10"] { --hurdle-accent: var(--hurdle-10); }
 
 .card:hover:not(.locked) { background: var(--bg-alt); }
 

@@ -19,6 +19,7 @@ export default function HurdleMap({ hurdles, selectedId, isCleared, isUnlocked, 
           return (
             <div
               key={h.id}
+              data-hurdle={h.id}
               className={[
                 styles.card,
                 active ? styles.active : '',
