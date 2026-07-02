@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { HURDLES, LEVELS } from './data/hurdles'
 import { useProgress } from './hooks/useProgress'
+import { pickQuizzes } from './utils/quizPicker'
 import Hero from './components/Hero'
 import HurdleMap from './components/HurdleMap'
 import HurdleDetail from './components/HurdleDetail'
@@ -17,6 +18,17 @@ export default function App() {
     isCleared, isUnlocked, clearHurdle,
     getQuizAnswers, answerQuiz, resetAll, totalCleared
   } = useProgress()
+
+  const baseHurdle = HURDLES.find(h => h.id === selectedId) || null
+
+  // 허들 또는 레벨이 바뀔 때만 새로 뽑는다 (답을 고르는 매 순간마다 다시 뽑지 않도록).
+  // 문제 풀(pool)이 8개보다 적으면 있는 만큼만, 많으면 안 겹치게 최대 8개를 뽑는다.
+  const drawnQuizzes = useMemo(() => {
+    if (!baseHurdle || !level) return []
+    const pool = baseHurdle.levels[level].quizzes
+    return pickQuizzes(level, baseHurdle.id, pool, 8)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId, level])
 
   // 레벨 미선택 시 레벨 선택 화면만 표시
   if (!level) {
@@ -61,15 +73,14 @@ export default function App() {
     }
   }
 
-  // 원본 허들 데이터(title/sub/core/body) + 선택된 레벨의 examples/quizzes/summary를 합쳐서
-  // HurdleDetail이 기대하는 형태(hurdle.examples, hurdle.quizzes 등 평평한 구조)로 만들어준다.
-  const baseHurdle = HURDLES.find(h => h.id === selectedId) || null
+  // 원본 허들 데이터(title/sub/core/body) + 선택된 레벨의 examples/summary +
+  // 방금 랜덤으로 뽑힌 quizzes를 합쳐서 HurdleDetail이 기대하는 평평한 구조로 만들어준다.
   const selectedHurdle = baseHurdle
     ? {
         ...baseHurdle,
         examples: baseHurdle.levels[level].examples,
         summary: baseHurdle.levels[level].summary,
-        quizzes: baseHurdle.levels[level].quizzes,
+        quizzes: drawnQuizzes,
       }
     : null
 
