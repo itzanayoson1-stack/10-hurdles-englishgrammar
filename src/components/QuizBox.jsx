@@ -38,7 +38,7 @@ export default function QuizBox({ hurdle, answers, onAnswer, onClear, isCleared 
 
       {allAnswered && (
         <div className={styles.score}>
-          <span className={styles.scoreNum}>{score}</span> / 3 정답
+          <span className={styles.scoreNum}>{score}</span> / {hurdle.quizzes.length} 정답
         </div>
       )}
 
