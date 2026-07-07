@@ -1,6 +1,22 @@
 import QuizBox from './QuizBox'
 import styles from './HurdleDetail.module.css'
 
+// "**굵게**", "==하이라이트==" 표시를 파싱해서 <strong>/<mark>로 렌더링
+function renderRichText(text, keyPrefix) {
+  const pattern = /(\*\*.+?\*\*|==.+?==)/g
+  const parts = text.split(pattern)
+  return parts.map((part, i) => {
+    const key = `${keyPrefix}-${i}`
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={key} className={styles.bold}>{part.slice(2, -2)}</strong>
+    }
+    if (part.startsWith('==') && part.endsWith('==')) {
+      return <mark key={key} className={styles.highlight}>{part.slice(2, -2)}</mark>
+    }
+    return part
+  })
+}
+
 export default function HurdleDetail({ hurdle, isCleared, quizAnswers, onAnswer, onClear }) {
   if (!hurdle) {
     return (
@@ -19,7 +35,7 @@ export default function HurdleDetail({ hurdle, isCleared, quizAnswers, onAnswer,
 
         <div className={styles.sectionLabel}>개념 설명</div>
         {hurdle.body.split('\n\n').map((para, i) => (
-          <p key={i} className={styles.body}>{para}</p>
+          <p key={i} className={styles.body}>{renderRichText(para, `body-${i}`)}</p>
         ))}
 
         <div className={styles.sectionLabel}>예문</div>
