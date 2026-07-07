@@ -18,7 +18,9 @@ export default function HurdleDetail({ hurdle, isCleared, quizAnswers, onAnswer,
         <p className={styles.core}>{hurdle.core}</p>
 
         <div className={styles.sectionLabel}>개념 설명</div>
-        <p className={styles.body}>{hurdle.body}</p>
+        {hurdle.body.split('\n\n').map((para, i) => (
+          <p key={i} className={styles.body}>{para}</p>
+        ))}
 
         <div className={styles.sectionLabel}>예문</div>
         <ul className={styles.examples}>
