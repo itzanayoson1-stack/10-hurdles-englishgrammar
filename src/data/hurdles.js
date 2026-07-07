@@ -11,7 +11,7 @@ export const HURDLES = [
     title: "이제 5형식 잊자. 문장은 딱 두 종류다.",
     sub: "~이다 vs ~하다",
     core: "영어 문장은 결국 BE 동사와 DO 동사, 두 종류에서 시작된다.",
-    body: "영문법 책을 펴면 1형식부터 5형식까지 쏟아집니다. 하지만 한국말로 생각해보면 단순합니다. 문장은 딱 두 종류입니다. 상태나 존재를 말하는 문장(~이다)과 동작이나 행위를 말하는 문장(~하다). 영어도 똑같습니다.\n\n**A is B** (A는 B이다) 또는 **A do B** (A가 B를 하다).\n\n'이렇게 단순하다고요? 제가 보는 영어 문장은 이렇게 심플하지 않던데요?'라고 생각하실 수 있습니다. **이해합니다.**\n\n영어 문장이 길어지는 이유는 바로 이 ==A와 B==가 길어지기 때문입니다.\n\n예를 들어 '대한민국(A)은 위대한 나라(B)이다'라는 기본 문장에 수식어가 붙으면 이렇게 됩니다: '오늘날 인구 5천만의 대한민국(A)은 지난 반세기 동안 눈부신 성장을 이뤄낸 나라(B)이다.' (Today, South Korea(A), with a population of 50 million, is a nation(B) that has achieved remarkable growth over the past half-century.) A 자리에는 **형용사구**('==인구 5천만의==' / 'with a population of 50 million')가, B 자리에는 **형용사절**('==지난 반세기 동안 눈부신 성장을 이뤄낸==' / 'that has achieved remarkable growth over the past half-century')이 들어와 문장이 길어진 것입니다. 자리는 그대로인데, 그 자리를 채우는 내용물이 커진 것뿐입니다.",
+    body: "영문법 책을 펴면 1형식부터 5형식까지 쏟아집니다. 하지만 한국말로 생각해보면 단순합니다. 문장은 딱 두 종류입니다. 상태나 존재를 말하는 문장(~이다)과 동작이나 행위를 말하는 문장(~하다). 영어도 똑같습니다.\n\n**A is B** (A는 B이다) 또는 **A do B** (A가 B를 하다).\n\n'이렇게 단순하다고요? 제가 보는 영어 문장은 이렇게 심플하지 않던데요?'라고 생각하실 수 있습니다. **이해합니다.**\n\n영어 문장이 길어지는 이유는 바로 이 ==A와 B==가 길어지기 때문입니다.\n\n예를 들어 '대한민국(A)은 위대한 나라(B)이다'라는 기본 문장에 수식어가 붙으면 이렇게 됩니다: '오늘날 인구 5천만의 대한민국(A)은 지난 반세기 동안 눈부신 성장을 이뤄낸 나라(B)이다.' (Today, South Korea(A), with a population of 50 million, is a nation(B) that has achieved remarkable growth over the past half-century.) A 자리에는 {{형용사구}}('{{인구 5천만의}}' / 'with a population of 50 million')가, B 자리에는 ((형용사절))('((지난 반세기 동안 눈부신 성장을 이뤄낸))' / 'that has achieved remarkable growth over the past half-century')이 들어와 문장이 길어진 것입니다. 자리는 그대로인데, 그 자리를 채우는 내용물이 커진 것뿐입니다.",
     levels: {
       ms: {
         examples: [
@@ -100,7 +100,7 @@ export const HURDLES = [
     title: "문장의 축",
     sub: "JECT — 공간에 던져진 것",
     core: "주어는 내 안에서 꺼낸 것. 목적어는 눈앞에 놓인 것.",
-    body: "SUBJECT의 SUB는 '아래에서'입니다. 내 마음속에서 끌어올려 던진 것이 주어입니다. OBJECT의 OB는 '바로 앞에'입니다. 눈앞에 뚜렷하게 놓인 것이 목적어입니다. JECT는 공간에 던져진 모든 것이며, 단어→구→절로 무한 확장됩니다.\n\n**[주어] + 동사 + [목적어]**\n\n'제 문장은 주어가 이렇게 짧지 않던데요? 주어 자리에 훨씬 긴 게 들어가 있던데요?'라고 생각하실 수 있습니다. **맞습니다.**\n\n주어와 목적어 자리에는 단어 하나만 오는 게 아니라, ==구나 절처럼 훨씬 큰 덩어리==도 통째로 들어갈 수 있습니다. 자리는 그대로인데, 그 자리를 채우는 내용물이 커지는 것뿐입니다.\n\n예를 들어 '정부가 정책을 시행한다'(The government implements a policy.)라는 기본 문장에 수식어가 붙으면 이렇게 됩니다: '국민 지지율 60%의 정부가 많은 전문가들이 우려하는 정책을 시행한다.' (A government with 60% public approval implements a policy that many experts are concerned about.) 주어(정부) 자리에는 **형용사구**('==국민 지지율 60%의==' / 'with 60% public approval')가, 목적어(정책) 자리에는 **형용사절**('==많은 전문가들이 우려하는==' / 'that many experts are concerned about')이 들어와 문장이 길어진 것입니다.",
+    body: "SUBJECT의 SUB는 '아래에서'입니다. 내 마음속에서 끌어올려 던진 것이 주어입니다. OBJECT의 OB는 '바로 앞에'입니다. 눈앞에 뚜렷하게 놓인 것이 목적어입니다. JECT는 공간에 던져진 모든 것이며, 단어→구→절로 무한 확장됩니다.\n\n**[주어] + 동사 + [목적어]**\n\n'제 문장은 주어가 이렇게 짧지 않던데요? 주어 자리에 훨씬 긴 게 들어가 있던데요?'라고 생각하실 수 있습니다. **맞습니다.**\n\n주어와 목적어 자리에는 단어 하나만 오는 게 아니라, ==구나 절처럼 훨씬 큰 덩어리==도 통째로 들어갈 수 있습니다. 자리는 그대로인데, 그 자리를 채우는 내용물이 커지는 것뿐입니다.\n\n예를 들어 '정부가 정책을 시행한다'(The government implements a policy.)라는 기본 문장에 수식어가 붙으면 이렇게 됩니다: '국민 지지율 60%의 정부가 많은 전문가들이 우려하는 정책을 시행한다.' (A government with 60% public approval implements a policy that many experts are concerned about.) 주어(정부) 자리에는 {{형용사구}}('{{국민 지지율 60%의}}' / 'with 60% public approval')가, 목적어(정책) 자리에는 ((형용사절))('((많은 전문가들이 우려하는))' / 'that many experts are concerned about')이 들어와 문장이 길어진 것입니다.",
     levels: {
       ms: {
         examples: [
@@ -189,7 +189,7 @@ export const HURDLES = [
     title: "동사는 문장의 엔진이다",
     sub: "동사를 잡으면 문장이 보인다",
     core: "엔진 없는 차는 고철이다. 동사 없는 문장은 존재하지 않는다.",
-    body: "긴 영어 문장을 만났을 때 어디서부터 읽어야 할지 모르겠다면 동사를 먼저 찾으십시오. BE 동사는 등호(=)입니다. 주어와 뒤의 말을 같다고 연결합니다. DO 동사는 화살표(→)입니다. 주어의 에너지가 목적어를 향해 쏘아집니다.\n\n동사 = **A = B (등호)** 또는 **A → B (화살표)**\n\n'문장이 길어서 동사가 어디 있는지 모르겠다고요? 심지어 동사처럼 생긴 단어가 여러 개 보인다고요?'라고 생각하실 수 있습니다. **당연합니다.**\n\n문장이 아무리 길어져도 ==진짜 동사(엔진)는 딱 하나==입니다. 나머지 동사처럼 보이는 것들은 전부 수식어(분사, 관계사절 등)일 뿐입니다. 수식어를 걷어내면 진짜 엔진 하나만 남습니다.\n\n예를 들어 '정책이 효과가 있다'(The policy works.)라는 기본 문장에 수식어가 붙으면 이렇게 됩니다: '여러 전문가들이 결함이 있다고 지적한 정책이, 예상과는 달리, 효과가 있다.' (The policy, which several experts have pointed out as flawed, works effectively, contrary to expectations.) '여러 전문가들이 결함이 있다고 지적한'(which several experts have pointed out as flawed)은 정책을 꾸미는 **수식어**(형용사절)일 뿐, ==진짜 엔진(동사)==은 '효과가 있다'(works) 하나뿐입니다.",
+    body: "긴 영어 문장을 만났을 때 어디서부터 읽어야 할지 모르겠다면 동사를 먼저 찾으십시오. BE 동사는 등호(=)입니다. 주어와 뒤의 말을 같다고 연결합니다. DO 동사는 화살표(→)입니다. 주어의 에너지가 목적어를 향해 쏘아집니다.\n\n동사 = **A = B (등호)** 또는 **A → B (화살표)**\n\n'문장이 길어서 동사가 어디 있는지 모르겠다고요? 심지어 동사처럼 생긴 단어가 여러 개 보인다고요?'라고 생각하실 수 있습니다. **당연합니다.**\n\n문장이 아무리 길어져도 ==진짜 동사(엔진)는 딱 하나==입니다. 나머지 동사처럼 보이는 것들은 전부 수식어(분사, 관계사절 등)일 뿐입니다. 수식어를 걷어내면 진짜 엔진 하나만 남습니다.\n\n예를 들어 '정책이 효과가 있다'(The policy works.)라는 기본 문장에 수식어가 붙으면 이렇게 됩니다: '여러 전문가들이 결함이 있다고 지적한 정책이, 예상과는 달리, 효과가 있다.' (The policy, which several experts have pointed out as flawed, works effectively, contrary to expectations.) '여러 전문가들이 결함이 있다고 지적한'(which several experts have pointed out as flawed)은 정책을 꾸미는 ((수식어))(형용사절)일 뿐, ==진짜 엔진(동사)==은 '효과가 있다'(works) 하나뿐입니다.",
     levels: {
       ms: {
         examples: [

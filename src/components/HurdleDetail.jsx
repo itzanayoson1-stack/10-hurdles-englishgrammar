@@ -1,9 +1,9 @@
 import QuizBox from './QuizBox'
 import styles from './HurdleDetail.module.css'
 
-// "**굵게**", "==하이라이트==" 표시를 파싱해서 <strong>/<mark>로 렌더링
+// "**굵게**", "==하이라이트==", "{{구 색상}}", "((절 색상))" 표시를 파싱
 function renderRichText(text, keyPrefix) {
-  const pattern = /(\*\*.+?\*\*|==.+?==)/g
+  const pattern = /(\*\*.+?\*\*|==.+?==|\{\{.+?\}\}|\(\(.+?\)\))/g
   const parts = text.split(pattern)
   return parts.map((part, i) => {
     const key = `${keyPrefix}-${i}`
@@ -12,6 +12,12 @@ function renderRichText(text, keyPrefix) {
     }
     if (part.startsWith('==') && part.endsWith('==')) {
       return <mark key={key} className={styles.highlight}>{part.slice(2, -2)}</mark>
+    }
+    if (part.startsWith('{{') && part.endsWith('}}')) {
+      return <strong key={key} className={styles.termPhrase}>{part.slice(2, -2)}</strong>
+    }
+    if (part.startsWith('((') && part.endsWith('))')) {
+      return <strong key={key} className={styles.termClause}>{part.slice(2, -2)}</strong>
     }
     return part
   })
