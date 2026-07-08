@@ -36,7 +36,7 @@
 }
 
 .core {
-  font-size: 14px;
+  font-size: 15.4px;
   color: var(--text2);
   margin-bottom: 2rem;
   font-style: italic;
@@ -52,9 +52,29 @@
 }
 
 .body {
-  font-size: 14px;
+  font-size: 15.4px;
   color: var(--text2);
   line-height: 1.85;
+}
+
+.bold {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.highlight {
+  background: linear-gradient(transparent 62%, #fde68a 62%);
+  padding: 0 1px;
+}
+
+.termPhrase {
+  color: #0F6E56;
+  font-weight: 600;
+}
+
+.termClause {
+  color: #993C1D;
+  font-weight: 600;
 }
 
 .examples { display: flex; flex-direction: column; gap: 10px; }
@@ -68,7 +88,7 @@
 }
 
 .exEn {
-  font-size: 14px;
+  font-size: 15.4px;
   font-weight: 600;
   color: var(--text);
   margin-bottom: 3px;
@@ -76,7 +96,7 @@
 }
 
 .exKo {
-  font-size: 12px;
+  font-size: 13.2px;
   color: var(--text3);
 }
 
@@ -85,7 +105,7 @@
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 1rem 1.2rem;
-  font-size: 13px;
+  font-size: 14.3px;
   color: var(--text2);
   line-height: 1.75;
 }
