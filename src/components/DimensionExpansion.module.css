@@ -1,0 +1,161 @@
+/* ================================================================
+   Hurdle 02 — 점·선·면 차원 확장 (v6 확정 규칙)
+   핵심 명사: 코랄 #FF4A5A 불변 · 수식어: 민트 #3FE0D0
+   면: 민트→지메일블루(#1A73E8) 그라데이션 + 순백 텍스트 반전
+   ================================================================ */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 1.2rem 0 2rem;
+}
+
+.headRow { display: flex; justify-content: space-between; align-items: center; }
+.sectionLabel { font-size: 12px; letter-spacing: 0.12em; font-weight: 800; color: #111111; }
+
+.replay {
+  font-size: 13px;
+  padding: 7px 13px;
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.steps { display: flex; gap: 6px; flex-wrap: wrap; }
+.step, .stepOn {
+  font-size: 13px;
+  padding: 8px 15px;
+  border-radius: 9px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+  color: #111111;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+}
+.stepOn { background: #111111; color: #fff; border-color: #111111; font-weight: 800; }
+
+/* ---------- 스테이지 ---------- */
+.stage {
+  position: relative;
+  height: 240px;
+  border: 1.5px solid #E0E0E0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- 코랄 명사 배지: 전 차원 관통 축 ---------- */
+@keyframes nounPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+.nounBadge {
+  min-width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #FF4A5A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: #FFFFFF;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(255, 74, 90, 0.35);
+  padding: 0 8px;
+  transition: border-radius 0.6s ease;
+}
+.nounEn { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.85); }
+.st0 .nounBadge { animation: nounPulse 1s ease-in-out infinite; }
+.st1 .nounBadge { border-radius: 10px; }  /* 점 → 선의 일부로 형태 전이 */
+
+/* ---------- 1차원: [매우 소중한] ── [선물] ---------- */
+.lineLayer { position: absolute; display: flex; align-items: center; transition: opacity 0.5s ease; }
+.modTrack {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  transition: max-width 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+}
+.st1 .modTrack { max-width: 320px; opacity: 1; }
+.modBlock {
+  background: #3FE0D0;
+  border-radius: 8px;
+  padding: 7px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 800;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+.modEn { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.9); }
+.modRay { width: 40px; height: 4px; background: #3FE0D0; border-radius: 2px; }
+.st2 .lineLayer { opacity: 0; pointer-events: none; }
+
+/* ---------- 2차원 면: 그라데이션 + 화이트 반전 ---------- */
+@keyframes planeExpand {
+  from { transform: scale(0.08); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.plane {
+  position: absolute;
+  inset: 12px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #3FE0D0 0%, #1A73E8 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transform: scale(0.08);
+  opacity: 0;
+  transform-origin: center center;
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
+}
+.st2 .plane { transform: scale(1); opacity: 1; }
+
+.pLabel { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: rgba(255,255,255,0.8); }
+.pKo { font-size: 19px; font-weight: 800; color: #FFFFFF; text-align: center; padding: 0 1rem; line-height: 1.7; }
+.pEn { font-size: 14px; font-weight: 700; color: #FFFFFF; text-align: center; line-height: 1.7; }
+.pNote { font-size: 12px; color: rgba(255,255,255,0.85); font-weight: 600; text-align: center; padding: 0 1rem; }
+
+/* 면 내부 코랄 팝 배지 — 색상 동기화의 핵심 */
+.coralPop {
+  background: #FF4A5A;
+  color: #FFFFFF;
+  padding: 3px 12px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(255, 74, 90, 0.45);
+  display: inline-block;
+}
+.coralPopSm {
+  background: #FF4A5A;
+  color: #FFFFFF;
+  padding: 2px 10px;
+  border-radius: 7px;
+  box-shadow: 0 3px 10px rgba(255, 74, 90, 0.45);
+}
+
+.dotLabel {
+  position: absolute;
+  bottom: 18px;
+  font-size: 12px;
+  color: #888888;
+  font-weight: 600;
+  transition: opacity 0.4s ease;
+}
+.st1 .dotLabel, .st2 .dotLabel { opacity: 0; }
+
+.caption { font-size: 13px; color: #444444; line-height: 1.7; min-height: 62px; }
