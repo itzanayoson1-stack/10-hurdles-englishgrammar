@@ -1,7 +1,7 @@
 /* ================================================================
-   Hurdle 02 — 점·선·면 차원 확장 (v6 확정 규칙)
-   핵심 명사: 코랄 #FF4A5A 불변 · 수식어: 민트 #3FE0D0
-   면: 민트→지메일블루(#1A73E8) 그라데이션 + 순백 텍스트 반전
+   Hurdle 02 — 점·선·면 차원 확장 (v7)
+   핵심 명사: 딥 레드 #FF4A5A 불변 · 수식어/면: 마린 블루 #3FE0D0
+   면: 블루 그라데이션 + 순백 텍스트 반전 · 텍스트 미니멀리즘
    ================================================================ */
 
 .wrap {
@@ -41,7 +41,7 @@
 /* ---------- 스테이지 ---------- */
 .stage {
   position: relative;
-  height: 240px;
+  height: 230px;
   border: 1.5px solid #E0E0E0;
   border-radius: 16px;
   overflow: hidden;
@@ -51,7 +51,7 @@
   justify-content: center;
 }
 
-/* ---------- 코랄 명사 배지: 전 차원 관통 축 ---------- */
+/* ---------- 레드 명사 배지: 전 차원 관통 축 ---------- */
 @keyframes nounPulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.15); }
@@ -75,9 +75,9 @@
 }
 .nounEn { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.85); }
 .st0 .nounBadge { animation: nounPulse 1s ease-in-out infinite; }
-.st1 .nounBadge { border-radius: 10px; }  /* 점 → 선의 일부로 형태 전이 */
+.st1 .nounBadge { border-radius: 10px; }  /* 점 -> 선의 일부로 형태 전이 */
 
-/* ---------- 1차원: [매우 소중한] ── [선물] ---------- */
+/* ---------- 선: 레드 축 양옆으로 뻗는 블루 수식/광선 ---------- */
 .lineLayer { position: absolute; display: flex; align-items: center; transition: opacity 0.5s ease; }
 .modTrack {
   display: flex;
@@ -102,9 +102,17 @@
 }
 .modEn { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.9); }
 .modRay { width: 40px; height: 4px; background: #3FE0D0; border-radius: 2px; }
+.rayRight {
+  width: 0;
+  height: 4px;
+  background: #3FE0D0;
+  border-radius: 2px;
+  transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.st1 .rayRight { width: 52px; }
 .st2 .lineLayer { opacity: 0; pointer-events: none; }
 
-/* ---------- 2차원 면: 그라데이션 + 화이트 반전 ---------- */
+/* ---------- 면: 마린 블루 그라데이션 + 화이트 반전 ---------- */
 @keyframes planeExpand {
   from { transform: scale(0.08); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
@@ -129,33 +137,30 @@
 .pLabel { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: rgba(255,255,255,0.8); }
 .pKo { font-size: 19px; font-weight: 800; color: #FFFFFF; text-align: center; padding: 0 1rem; line-height: 1.7; }
 .pEn { font-size: 14px; font-weight: 700; color: #FFFFFF; text-align: center; line-height: 1.7; }
-.pNote { font-size: 12px; color: rgba(255,255,255,0.85); font-weight: 600; text-align: center; padding: 0 1rem; }
 
-/* 면 내부 코랄 팝 배지 — 색상 동기화의 핵심 */
-.coralPop {
+/* 면 내부 레드 팝 배지 — 색상 동기화의 핵심 */
+.redPop {
   background: #FF4A5A;
   color: #FFFFFF;
   padding: 3px 12px;
   border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(255, 74, 90, 0.45);
+  box-shadow: 0 3px 10px rgba(255, 74, 90, 0.5);
   display: inline-block;
 }
-.coralPopSm {
+.redPopSm {
   background: #FF4A5A;
   color: #FFFFFF;
   padding: 2px 10px;
   border-radius: 7px;
-  box-shadow: 0 3px 10px rgba(255, 74, 90, 0.45);
+  box-shadow: 0 3px 10px rgba(255, 74, 90, 0.5);
 }
 
 .dotLabel {
   position: absolute;
-  bottom: 18px;
+  bottom: 16px;
   font-size: 12px;
   color: #888888;
   font-weight: 600;
   transition: opacity 0.4s ease;
 }
 .st1 .dotLabel, .st2 .dotLabel { opacity: 0; }
-
-.caption { font-size: 13px; color: #444444; line-height: 1.7; min-height: 62px; }
