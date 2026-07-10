@@ -1,6 +1,7 @@
 import QuizBox from './QuizBox'
 import Hurdle01Intro from './Hurdle01Intro'
 import SentenceAxis from './SentenceAxis'
+import VerbEngine from './VerbEngine'
 import DimensionExpansion from './DimensionExpansion'
 import styles from './HurdleDetail.module.css'
 
@@ -42,9 +43,10 @@ export default function HurdleDetail({ hurdle, isCleared, quizAnswers, onAnswer,
         <h2 className={styles.title}>{hurdle.title}</h2>
         <p className={styles.core}>{hurdle.core}</p>
 
-        {/* 허들별 인터랙티브 컴포넌트: 01 = FORGET/REMEMBER 모션, 02 = 문장의 축(주어/목적어 어원), 04 = 점·선·면 차원 확장 */}
+        {/* 허들별 인터랙티브 컴포넌트: 01 = FORGET/REMEMBER 모션, 02 = 문장의 축, 03 = 동사=엔진 스캔, 04 = 점·선·면 차원 확장 */}
         {hurdle.id === 1 && <Hurdle01Intro key={hurdle.id} />}
         {hurdle.id === 2 && <SentenceAxis key={hurdle.id} />}
+        {hurdle.id === 3 && <VerbEngine key={hurdle.id} />}
         {hurdle.id === 4 && <DimensionExpansion key={hurdle.id} />}
 
         <div className={styles.sectionLabel}>개념 설명</div>
