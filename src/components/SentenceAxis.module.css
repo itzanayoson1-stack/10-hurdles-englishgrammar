@@ -1,0 +1,211 @@
+/* ================================================================
+   Hurdle 02 — 문장의 축 (SUBJECT/OBJECT 어원 + 야구 예문)
+   코랄 #FF4A5A = 주어(SUBJECT, 에너지 출발점)
+   민트 #3FE0D0 = 목적어(OBJECT, 에너지 도착점)
+   오프블랙 #111111 = 동사(VERB, 궤적)
+   ================================================================ */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 1.2rem 0 2rem;
+}
+
+.headRow { display: flex; justify-content: space-between; align-items: center; }
+.sectionLabel { font-size: 12px; letter-spacing: 0.1em; font-weight: 800; color: #111111; }
+
+.replay {
+  font-size: 13px;
+  padding: 7px 13px;
+  border-radius: 8px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ---------- 스테이지 ---------- */
+.stage {
+  position: relative;
+  min-height: 220px;
+  border: 1.5px solid #E0E0E0;
+  border-radius: 16px;
+  padding: 1.4rem 1.2rem;
+  background: #FFFFFF;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---------- SUBJECT 컬럼: 코랄, 아래에서 위로 솟아오름 ---------- */
+.subCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.ph1 .subCol, .ph2 .subCol, .ph3 .subCol, .ph4 .subCol {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.subjectBadge {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #FF4A5A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(255, 74, 90, 0.35);
+}
+
+.objectBadge {
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+  background: #3FE0D0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(63, 224, 208, 0.35);
+}
+
+.badgeKo { font-size: 16px; font-weight: 800; color: #FFFFFF; }
+.badgeEn { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.85); margin-top: 2px; }
+
+.subArrowUp { font-size: 16px; font-weight: 800; color: #FF4A5A; }
+.objTarget { font-size: 15px; font-weight: 800; color: #3FE0D0; }
+
+.etymRow { display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+.etymSub, .etymOb { font-size: 13px; font-weight: 800; color: #111111; }
+.etymJect { font-size: 13px; font-weight: 800; color: #888888; }
+.etymPlus { font-size: 12px; color: #bbbbbb; }
+.etymDesc { font-size: 11px; color: #888888; text-align: center; }
+
+/* ---------- OBJECT 컬럼: 민트, 이미 눈앞에 고정 (확대 등장) ---------- */
+.objCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ph2 .objCol, .ph3 .objCol, .ph4 .objCol {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ---------- 동사 에너지 궤적: 주어 -> 목적어 ---------- */
+.energyTrack {
+  position: relative;
+  width: 90px;
+  height: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.energyBeam {
+  width: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #FF4A5A 0%, #3FE0D0 100%);
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ph3 .energyBeam, .ph4 .energyBeam { width: 90px; }
+
+.verbLabel {
+  position: absolute;
+  top: -28px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #111111;
+  background: #fff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #E0E0E0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  white-space: nowrap;
+}
+.ph3 .verbLabel, .ph4 .verbLabel { opacity: 1; }
+
+/* ---------- 정지 화면: 예문 ---------- */
+.exWrap {
+  border: 1.5px solid #E0E0E0;
+  border-radius: 16px;
+  padding: 1.2rem 1.35rem;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.exShown { opacity: 1; transform: translateY(0); }
+
+.exRow {
+  font-size: 16px;
+  color: #111111;
+  line-height: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: baseline;
+}
+.exDot { color: #111111; }
+.exArrowDown { font-size: 12px; color: #888888; text-align: center; }
+
+.mSub, .mSubInner {
+  border-bottom: 3px solid #FF4A5A;
+  padding-bottom: 1px;
+  font-weight: 700;
+  color: #111111;
+}
+.mVerb, .mVerbInner {
+  font-weight: 700;
+  color: #111111;
+  background: #F3F3F3;
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+.mObj {
+  border-bottom: 3px solid #3FE0D0;
+  padding-bottom: 1px;
+  font-weight: 700;
+  color: #111111;
+}
+.mObjClause {
+  background: #E8FBF8;
+  border: 1px dashed #3FE0D0;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-weight: 600;
+  color: #111111;
+}
+.mSubInner, .mVerbInner { font-size: 0.95em; }
+
+/* ---------- 범례 ---------- */
+.legend { display: flex; gap: 16px; font-size: 12px; color: #888888; flex-wrap: wrap; }
+.legend > span { display: inline-flex; align-items: center; }
+.kSub { display: inline-block; width: 12px; height: 12px; background: #FF4A5A; border-radius: 50%; margin-right: 5px; }
+.kVerb { display: inline-block; width: 14px; height: 3px; background: #111111; margin-right: 5px; }
+.kObj { display: inline-block; width: 12px; height: 12px; background: #3FE0D0; border-radius: 3px; margin-right: 5px; }
+
+@media (max-width: 520px) {
+  .stage { grid-template-columns: 1fr; justify-items: center; }
+  .energyTrack { width: 4px; height: 60px; }
+  .energyBeam { width: 4px; height: 0; }
+  .ph3 .energyBeam, .ph4 .energyBeam { height: 60px; width: 4px; }
+  .verbLabel { top: 50%; left: 28px; transform: translateY(-50%); }
+}
