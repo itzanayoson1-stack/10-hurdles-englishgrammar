@@ -46,13 +46,13 @@ function SceneCollapse({ active }) {
     clear()
     setAbsorbed(0); setTagline(-1); setCleared(false)
     TERMS.forEach((_, i) => {
-      timers.current.push(setTimeout(() => setAbsorbed(i + 1), 500 + i * 420))
+      timers.current.push(setTimeout(() => setAbsorbed(i + 1), 900 + i * 900))
     })
-    const afterAbsorb = 500 + TERMS.length * 420 + 300
+    const afterAbsorb = 900 + TERMS.length * 900 + 600
     TAGLINES.forEach((_, i) => {
-      timers.current.push(setTimeout(() => setTagline(i), afterAbsorb + i * 1300))
+      timers.current.push(setTimeout(() => setTagline(i), afterAbsorb + i * 1800))
     })
-    timers.current.push(setTimeout(() => setCleared(true), afterAbsorb + TAGLINES.length * 1300))
+    timers.current.push(setTimeout(() => setCleared(true), afterAbsorb + TAGLINES.length * 1800))
   }, [])
 
   useEffect(() => { if (active) play(); return clear }, [active, play])

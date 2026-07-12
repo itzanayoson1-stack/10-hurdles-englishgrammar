@@ -8,11 +8,11 @@
 .wrap { display: flex; flex-direction: column; gap: 14px; margin: 1.2rem 0 2rem; }
 
 .headRow { display: flex; justify-content: space-between; align-items: center; }
-.sectionLabel { font-size: 12px; letter-spacing: 0.1em; font-weight: 800; color: #111111; }
+.sectionLabel { font-size: 13px; letter-spacing: 0.1em; font-weight: 800; color: #111111; }
 
 .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .tab, .tabOn {
-  font-size: 13px; padding: 8px 14px; border-radius: 9px;
+  font-size: 14px; padding: 8px 14px; border-radius: 9px;
   border: 1px solid #d0d0d0; background: #fff; color: #111111;
   cursor: pointer; font-family: inherit;
   transition: background 0.15s, color 0.15s;
@@ -31,7 +31,7 @@
   cursor: pointer; font-family: inherit;
 }
 
-.unityCaption { font-size: 13.5px; color: #444; text-align: center; opacity: 0; transition: opacity 0.6s ease; }
+.unityCaption { font-size: 16px; color: #444; text-align: center; opacity: 0; transition: opacity 0.6s ease; }
 .shown { opacity: 1; }
 .unityCaption strong { color: #B9760A; }
 
@@ -40,7 +40,7 @@
    ================================================================ */
 .collapseStage {
   position: relative;
-  height: 230px;
+  height: 270px;
   display: flex; align-items: center; justify-content: center;
 }
 
@@ -58,18 +58,18 @@
   40% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
-.coreAdj { font-size: 16px; font-weight: 800; color: #FFFFFF; }
-.coreArrow { font-size: 14px; color: rgba(255,255,255,0.8); }
-.coreNoun { font-size: 16px; font-weight: 800; color: #FFFFFF; opacity: 0.92; }
-.coreCaption { font-size: 12px; color: #888888; font-weight: 600; }
+.coreAdj { font-size: 23px; font-weight: 800; color: #FFFFFF; }
+.coreArrow { font-size: 18px; color: rgba(255,255,255,0.8); }
+.coreNoun { font-size: 23px; font-weight: 800; color: #FFFFFF; opacity: 0.92; }
+.coreCaption { font-size: 14px; color: #888888; font-weight: 600; }
 
 .termOrbit { position: absolute; inset: 0; z-index: 1; }
 .orbitTag {
   position: absolute;
-  background: #9CA3AF; color: #fff; font-size: 11px; font-weight: 700;
-  padding: 5px 9px; border-radius: 6px;
+  background: #9CA3AF; color: #fff; font-size: 14px; font-weight: 700;
+  padding: 7px 12px; border-radius: 7px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.4,0,0.6,1);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.4,0,0.6,1);
 }
 .orbit0 { top: 6%; left: 8%; }
 .orbit1 { top: 6%; right: 8%; }
@@ -91,18 +91,19 @@
 
 .taglineStage {
   position: relative;
-  height: 32px;
+  height: 44px;
   display: flex; align-items: center; justify-content: center;
 }
 .taglineText {
-  position: absolute; font-size: 14px; font-weight: 700; color: #111111;
-  text-align: center; opacity: 0; transition: opacity 0.7s ease;
+  position: absolute; font-size: 18px; font-weight: 700; color: #111111;
+  text-align: center; opacity: 0; transition: opacity 0.9s ease;
+  padding: 0 1rem;
 }
 .taglineShown { opacity: 1; }
 
 .clearedStamp {
   align-self: center;
-  font-size: 15px; font-weight: 800; letter-spacing: 0.06em;
+  font-size: 19px; font-weight: 800; letter-spacing: 0.06em;
   color: #FFFFFF; background: #111111;
   padding: 8px 18px; border-radius: 10px;
   opacity: 0; transform: scale(0.7) rotate(-4deg);
@@ -115,13 +116,13 @@
    ================================================================ */
 .setToggle { display: flex; gap: 6px; }
 .setBtn, .setBtnOn {
-  font-size: 12.5px; padding: 7px 12px; border-radius: 8px;
+  font-size: 14px; padding: 7px 12px; border-radius: 8px;
   border: 1px solid #d0d0d0; background: #fff; color: #111;
   cursor: pointer; font-family: inherit;
 }
 .setBtnOn { background: #F5A623; color: #fff; border-color: #F5A623; font-weight: 700; }
 
-.directionPrinciple { font-size: 13px; color: #444; text-align: center; line-height: 1.7; }
+.directionPrinciple { font-size: 15px; color: #444; text-align: center; line-height: 1.7; }
 .directionPrinciple strong { color: #111; }
 .dirOut { color: #B9600A; font-weight: 700; }
 .dirIn { color: #1E40C4; font-weight: 700; }
@@ -133,16 +134,16 @@
 
 .dirCol { display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; }
 .dirActor {
-  width: 64px; height: 64px; border-radius: 14px; background: #F3F3F3;
+  width: 76px; height: 76px; border-radius: 16px; background: #F3F3F3;
   display: flex; align-items: center; justify-content: center;
-  font-size: 14px; font-weight: 800; color: #111;
+  font-size: 16px; font-weight: 800; color: #111;
   transition: transform 0.3s ease, background 0.3s ease;
 }
 .dirActorHit { background: #E8EEFF; transform: scale(1.08) rotate(-3deg); }
-.dirActorEn { font-size: 11px; color: #888; font-weight: 600; }
+.dirActorEn { font-size: 12.5px; color: #888; font-weight: 600; }
 
 .dirTagOut, .dirTagIn {
-  font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 6px; color: #fff;
+  font-size: 12px; font-weight: 800; padding: 2px 7px; border-radius: 6px; color: #fff;
   opacity: 0; transform: translateY(6px);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
@@ -159,26 +160,26 @@
   color: #FF9933; transform: scale(1.15); opacity: 1;
 }
 .slowmoLabel {
-  font-size: 10.5px; color: #999; text-align: center; opacity: 0;
+  font-size: 12px; color: #999; text-align: center; opacity: 0;
   transition: opacity 0.4s ease;
 }
 .slowmoLabel.shown { opacity: 1; }
 
 .directionResult {
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  font-size: 14px; font-weight: 700; opacity: 0; transition: opacity 0.5s ease;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 16px; font-weight: 700; opacity: 0; transition: opacity 0.5s ease;
 }
 .resultOrange { color: #B9600A; background: #FFF1E0; padding: 3px 9px; border-radius: 6px; }
 .resultBlue { color: #1E40C4; background: #E8EEFF; padding: 3px 9px; border-radius: 6px; }
 .resultArrow { color: #ccc; font-size: 12px; }
 
-.secondaryNote { font-size: 11.5px; color: #999; text-align: center; }
+.secondaryNote { font-size: 13px; color: #999; text-align: center; }
 .secondaryChip { background: #F1F1F1; color: #888; padding: 1px 6px; border-radius: 5px; }
 
 /* ================================================================
    ③ 분사구문 직독직해 — 자석 결합
    ================================================================ */
-.cursorNote { font-size: 11.5px; color: #999; text-align: center; }
+.cursorNote { font-size: 13px; color: #999; text-align: center; }
 
 .readStage { position: relative; padding: 0.6rem 0.2rem; overflow: hidden; }
 
@@ -193,7 +194,7 @@
   animation: scanRight 1.2s cubic-bezier(0.4,0,0.6,1) forwards;
 }
 
-.readLine { font-size: 16px; line-height: 2; color: #111111; }
+.readLine { font-size: 18px; line-height: 2; color: #111111; }
 
 .participleBlock {
   display: inline-block; font-weight: 700; color: #111111;
@@ -213,17 +214,17 @@
 
 .axisCol { display: flex; flex-direction: column; align-items: center; gap: 4px; }
 .dockedTag {
-  font-size: 11px; font-weight: 700; color: #111;
+  font-size: 13px; font-weight: 700; color: #111;
   background: #F1F1F1; border: 1px dashed #bbb;
   padding: 3px 8px; border-radius: 6px;
 }
-.axisArrowDown { font-size: 10.5px; color: #999; text-align: center; }
+.axisArrowDown { font-size: 12px; color: #999; text-align: center; }
 .axisArrow { font-size: 14px; color: #ccc; }
 .axisBadge {
-  min-width: 54px; padding: 8px 10px; border-radius: 10px;
-  color: #fff; font-size: 13px; font-weight: 800; text-align: center;
+  min-width: 60px; padding: 9px 12px; border-radius: 11px;
+  color: #fff; font-size: 15px; font-weight: 800; text-align: center;
 }
-.axisLabel { font-size: 10px; letter-spacing: 0.08em; color: #999; font-weight: 700; }
+.axisLabel { font-size: 11px; letter-spacing: 0.08em; color: #999; font-weight: 700; }
 
 @media (max-width: 520px) {
   .directionStage { grid-template-columns: 1fr; justify-items: center; }
