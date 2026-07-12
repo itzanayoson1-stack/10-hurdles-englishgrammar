@@ -1,7 +1,7 @@
 /* ================================================================
-   Hurdle 05 — 형용사는 하나다
-   골드 #F5A623 = 형용사 본질(Hurdle 03 엔진과 동일 톤, "본질은 하나로 수렴")
-   오렌지 #FF9933 = -ing(활동 에너지) · 블루 #4A7CFF = p.p(소진 에너지)
+   Hurdle 05 — 형용사는 하나다 (Creative Direction Brief 반영판)
+   골드 #F5A623 = 형용사 본질 (Hurdle 03 엔진과 동일 톤)
+   오렌지 #FF9933 = 방향 밖으로(-ing) · 블루 #4A7CFF = 방향 안으로(p.p)
    코랄 #FF4A5A = 주어 · 민트 #3FE0D0 = 목적어
    ================================================================ */
 
@@ -31,111 +31,155 @@
   cursor: pointer; font-family: inherit;
 }
 
-/* ================================================================
-   ① 네임택 제거 -> 형용사 보석
-   ================================================================ */
-.unityStage {
-  position: relative;
-  height: 190px;
-  display: flex; align-items: center; justify-content: center;
-}
-
-.nounCore {
-  width: 78px; height: 78px; border-radius: 50%;
-  background: #111111; display: flex; align-items: center; justify-content: center;
-  z-index: 1;
-}
-.nounLabel { color: #FFFFFF; font-size: 13px; font-weight: 800; }
-
-.tagCluster { position: absolute; inset: 0; }
-.tag {
-  position: absolute; background: #9CA3AF; color: #fff;
-  font-size: 11px; font-weight: 700; padding: 5px 9px; border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.tag1 { top: 8px; left: 34%; }
-.tag2 { top: 34px; left: 8%; }
-.tag3 { top: 34px; right: 6%; }
-.tag4 { top: 64px; left: 40%; }
-
-.up1 .tag { opacity: 0; transform: scale(0.4) rotate(35deg) translateY(20px); }
-
-.hammer {
-  position: absolute; font-size: 26px; opacity: 0;
-  transform: scale(0.5) rotate(-30deg);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.up1 .hammer { opacity: 1; transform: scale(1.15) rotate(20deg); }
-.up2 .hammer, .up3 .hammer { opacity: 0; }
-
-.gem {
-  position: absolute; bottom: 30px; font-size: 13px; font-weight: 800;
-  color: #B9760A; background: #FFF3DC; padding: 5px 10px; border-radius: 8px;
-  opacity: 0; transform: scale(0.5) translateY(10px);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1);
-  box-shadow: 0 3px 10px rgba(245, 166, 35, 0.35);
-}
-.up2 .gem { opacity: 1; transform: scale(1) translateY(-30px); }
-.up3 .gem { opacity: 1; transform: scale(1) translateY(-2px); }
-
-.unityCaption {
-  font-size: 13.5px; color: #444; text-align: center;
-  opacity: 0; transition: opacity 0.6s ease;
-}
+.unityCaption { font-size: 13.5px; color: #444; text-align: center; opacity: 0; transition: opacity 0.6s ease; }
 .shown { opacity: 1; }
 .unityCaption strong { color: #B9760A; }
 
 /* ================================================================
-   ② 에너지 방향 (-ing vs p.p)
+   ① Grammar Collapse — 형용사 코어 + 용어 흡수 + 태그라인 + 클리어 스탬프
    ================================================================ */
-.verbRow { display: flex; align-items: baseline; gap: 10px; justify-content: center; }
-.verbBase { font-size: 18px; font-weight: 800; color: #111111; }
-.verbWrong { font-size: 13px; color: #aaa; text-decoration: line-through; }
-.verbRight { font-size: 13px; color: #B9760A; font-weight: 700; }
+.collapseStage {
+  position: relative;
+  height: 230px;
+  display: flex; align-items: center; justify-content: center;
+}
 
-.energyStage {
+.coreWrap { display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 2; }
+
+.core {
+  display: flex; align-items: center; gap: 8px;
+  background: #F5A623; border-radius: 14px; padding: 12px 18px;
+  box-shadow: 0 4px 16px rgba(245, 166, 35, 0.35);
+  transition: transform 0.25s ease;
+}
+.corePulsing { animation: corePulse 0.42s ease; }
+@keyframes corePulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.coreAdj { font-size: 16px; font-weight: 800; color: #FFFFFF; }
+.coreArrow { font-size: 14px; color: rgba(255,255,255,0.8); }
+.coreNoun { font-size: 16px; font-weight: 800; color: #FFFFFF; opacity: 0.92; }
+.coreCaption { font-size: 12px; color: #888888; font-weight: 600; }
+
+.termOrbit { position: absolute; inset: 0; z-index: 1; }
+.orbitTag {
+  position: absolute;
+  background: #9CA3AF; color: #fff; font-size: 11px; font-weight: 700;
+  padding: 5px 9px; border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.4,0,0.6,1);
+}
+.orbit0 { top: 6%; left: 8%; }
+.orbit1 { top: 6%; right: 8%; }
+.orbit2 { top: 42%; left: 2%; }
+.orbit3 { top: 42%; right: 2%; }
+.orbit4 { bottom: 6%; left: 12%; }
+.orbit5 { bottom: 6%; right: 12%; }
+
+.orbitAbsorbed {
+  opacity: 0;
+  transform: scale(0.25) translate(var(--tx, 0), var(--ty, 0));
+}
+.orbit0.orbitAbsorbed { transform: scale(0.2) translate(60%, 40%); }
+.orbit1.orbitAbsorbed { transform: scale(0.2) translate(-60%, 40%); }
+.orbit2.orbitAbsorbed { transform: scale(0.2) translate(70%, -10%); }
+.orbit3.orbitAbsorbed { transform: scale(0.2) translate(-70%, -10%); }
+.orbit4.orbitAbsorbed { transform: scale(0.2) translate(30%, -60%); }
+.orbit5.orbitAbsorbed { transform: scale(0.2) translate(-30%, -60%); }
+
+.taglineStage {
+  position: relative;
+  height: 32px;
+  display: flex; align-items: center; justify-content: center;
+}
+.taglineText {
+  position: absolute; font-size: 14px; font-weight: 700; color: #111111;
+  text-align: center; opacity: 0; transition: opacity 0.7s ease;
+}
+.taglineShown { opacity: 1; }
+
+.clearedStamp {
+  align-self: center;
+  font-size: 15px; font-weight: 800; letter-spacing: 0.06em;
+  color: #FFFFFF; background: #111111;
+  padding: 8px 18px; border-radius: 10px;
+  opacity: 0; transform: scale(0.7) rotate(-4deg);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+.stampShown { opacity: 1; transform: scale(1) rotate(-4deg); }
+
+/* ================================================================
+   ② Direction — 예시 토글 + 방향 화살표 + 결과 라벨
+   ================================================================ */
+.setToggle { display: flex; gap: 6px; }
+.setBtn, .setBtnOn {
+  font-size: 12.5px; padding: 7px 12px; border-radius: 8px;
+  border: 1px solid #d0d0d0; background: #fff; color: #111;
+  cursor: pointer; font-family: inherit;
+}
+.setBtnOn { background: #F5A623; color: #fff; border-color: #F5A623; font-weight: 700; }
+
+.directionPrinciple { font-size: 13px; color: #444; text-align: center; line-height: 1.7; }
+.directionPrinciple strong { color: #111; }
+.dirOut { color: #B9600A; font-weight: 700; }
+.dirIn { color: #1E40C4; font-weight: 700; }
+
+.directionStage {
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
   gap: 8px; padding: 0.6rem 0;
 }
 
-.actor { display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; }
-.actorFace { font-size: 34px; transition: transform 0.3s ease; }
-.actorFace.hit { transform: scale(1.15) rotate(-6deg); }
-.actorKo { font-size: 12px; color: #666; font-weight: 600; }
+.dirCol { display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; }
+.dirActor {
+  width: 64px; height: 64px; border-radius: 14px; background: #F3F3F3;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; color: #111;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.dirActorHit { background: #E8EEFF; transform: scale(1.08) rotate(-3deg); }
+.dirActorEn { font-size: 11px; color: #888; font-weight: 600; }
 
-.tagIng, .tagPp {
-  position: absolute; top: -14px; font-size: 11px; font-weight: 800;
-  padding: 2px 7px; border-radius: 6px; color: #fff;
+.dirTagOut, .dirTagIn {
+  font-size: 10.5px; font-weight: 800; padding: 2px 7px; border-radius: 6px; color: #fff;
   opacity: 0; transform: translateY(6px);
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
-.tagIng { background: #FF9933; }
-.tagPp { background: #4A7CFF; }
-.tagIng.shown, .tagPp.shown { opacity: 1; transform: translateY(0); }
+.dirTagOut { background: #FF9933; }
+.dirTagIn { background: #4A7CFF; }
+.dirTagOut.shown, .dirTagIn.shown { opacity: 1; transform: translateY(0); }
 
-.beamTrack { width: 70px; height: 6px; display: flex; align-items: center; }
-.beam {
-  width: 0; height: 6px; border-radius: 3px;
-  background: linear-gradient(90deg, #FF9933, #4A7CFF);
-  transition: width 0.7s cubic-bezier(0.22,1,0.36,1);
+.dirTrack { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 90px; }
+.dirArrowOut {
+  font-size: 22px; color: #ccc; transform: scale(0.6); opacity: 0.4;
+  transition: color 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
 }
-.ep2 .beam, .ep3 .beam { width: 70px; }
+.dp1 .dirArrowOut, .dp2 .dirArrowOut, .dp3 .dirArrowOut {
+  color: #FF9933; transform: scale(1.15); opacity: 1;
+}
+.slowmoLabel {
+  font-size: 10.5px; color: #999; text-align: center; opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.slowmoLabel.shown { opacity: 1; }
 
-.energyResult {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
+.directionResult {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
   font-size: 14px; font-weight: 700; opacity: 0; transition: opacity 0.5s ease;
 }
 .resultOrange { color: #B9600A; background: #FFF1E0; padding: 3px 9px; border-radius: 6px; }
 .resultBlue { color: #1E40C4; background: #E8EEFF; padding: 3px 9px; border-radius: 6px; }
-.resultArrow { color: #ccc; }
+.resultArrow { color: #ccc; font-size: 12px; }
 
-.formulaKill { font-size: 12.5px; color: #888; text-align: center; opacity: 0; transition: opacity 0.5s ease; }
-.strike { text-decoration: line-through; color: #bbb; }
+.secondaryNote { font-size: 11.5px; color: #999; text-align: center; }
+.secondaryChip { background: #F1F1F1; color: #888; padding: 1px 6px; border-radius: 5px; }
 
 /* ================================================================
    ③ 분사구문 직독직해 — 자석 결합
    ================================================================ */
+.cursorNote { font-size: 11.5px; color: #999; text-align: center; }
+
 .readStage { position: relative; padding: 0.6rem 0.2rem; overflow: hidden; }
 
 @keyframes scanRight {
@@ -155,9 +199,7 @@
   display: inline-block; font-weight: 700; color: #111111;
   transition: transform 0.6s cubic-bezier(0.34,1.4,0.64,1), opacity 0.4s ease;
 }
-.rp2 .participleBlock {
-  transform: translateY(-30px) scale(0.92);
-}
+.rp2 .participleBlock { transform: translateY(-30px) scale(0.92); }
 
 .subjMark { border-bottom: 3px solid #FF4A5A; padding-bottom: 1px; font-weight: 700; }
 .objMark { border-bottom: 3px solid #3FE0D0; padding-bottom: 1px; font-weight: 700; }
@@ -175,7 +217,7 @@
   background: #F1F1F1; border: 1px dashed #bbb;
   padding: 3px 8px; border-radius: 6px;
 }
-.axisArrowDown { font-size: 12px; color: #999; }
+.axisArrowDown { font-size: 10.5px; color: #999; text-align: center; }
 .axisArrow { font-size: 14px; color: #ccc; }
 .axisBadge {
   min-width: 54px; padding: 8px 10px; border-radius: 10px;
@@ -184,9 +226,7 @@
 .axisLabel { font-size: 10px; letter-spacing: 0.08em; color: #999; font-weight: 700; }
 
 @media (max-width: 520px) {
-  .energyStage { grid-template-columns: 1fr; justify-items: center; }
-  .beamTrack { width: 6px; height: 50px; }
-  .beam { width: 6px; height: 0; }
-  .ep2 .beam, .ep3 .beam { height: 50px; width: 6px; }
+  .directionStage { grid-template-columns: 1fr; justify-items: center; }
+  .dirTrack { width: auto; }
   .axisRow { flex-wrap: wrap; }
 }
