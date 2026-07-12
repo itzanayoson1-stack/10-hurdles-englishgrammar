@@ -1,7 +1,7 @@
 /* ================================================================
-   Hurdle 06 — 부사도 하나다 (Adverb Bead)
-   보라 #8B5CFF = 부사 구슬 신호색 (기존 코랄/민트/골드와 구분되는 새 색)
-   코랄 #FF4A5A = 주어 · 골드 #F5A623 = 동사 · 민트 #3FE0D0 = 목적어
+   Hurdle 06 — 부사 샌드박스 (Playable Experience)
+   보라 #8B5CFF = 부사 구슬 · 회색 #9CA3AF = 반사 쉴드 (중립 차단 신호)
+   골드 #F5A623 = 동사 · 코랄은 주어 전용이므로 쉴드에 사용 금지
    ================================================================ */
 
 .wrap { display: flex; flex-direction: column; gap: 14px; margin: 1.2rem 0 2rem; }
@@ -9,204 +9,177 @@
 .headRow { display: flex; justify-content: space-between; align-items: center; }
 .sectionLabel { font-size: 13px; letter-spacing: 0.1em; font-weight: 800; color: #111111; }
 
-.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-.tab, .tabOn {
-  font-size: 14px; padding: 8px 14px; border-radius: 9px;
-  border: 1px solid #d0d0d0; background: #fff; color: #111111;
-  cursor: pointer; font-family: inherit;
-  transition: background 0.15s, color 0.15s;
-}
-.tabOn { background: #111111; color: #fff; border-color: #111111; font-weight: 800; }
-
-.sceneBox {
-  border: 1.5px solid #E0E0E0; border-radius: 16px;
-  padding: 1.3rem 1.3rem; background: #FFFFFF;
-  display: flex; flex-direction: column; gap: 12px;
-}
-
 .replaySm {
-  align-self: flex-end; font-size: 12px; padding: 6px 11px;
+  font-size: 12px; padding: 6px 11px;
   border-radius: 7px; border: 1px solid #d0d0d0; background: #fff;
   cursor: pointer; font-family: inherit;
 }
 
-/* ================================================================
-   ① Cognitive Collapse — 재설계판
-   기준 문장 고정 → 카드 순차 활성화 → 압축 → 구슬 + 요약
-   ================================================================ */
-.baseSentence {
-  font-size: 19px; font-weight: 600; color: #111111; text-align: center;
-}
-.baseVerb {
-  background: #F5A623; color: #FFFFFF; font-weight: 800;
-  padding: 3px 12px; border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(245, 166, 35, 0.35);
-}
-.baseSlot { color: #8B5CFF; font-weight: 800; }
-
-.collapseStage {
-  position: relative;
-  display: flex; flex-direction: column; align-items: center; gap: 12px;
-  padding: 0.8rem 0;
-  min-height: 240px;
-  justify-content: center;
-}
-
-/* --- 형태 카드: 점 < 선 < 면 순으로 폭이 넓어짐 --- */
-.formCard {
-  display: flex; align-items: center; gap: 12px;
-  border: 2px solid #E0E0E0; border-radius: 14px;
+/* ---------- 스테이지 ---------- */
+.stage {
+  border: 1.5px solid #E0E0E0; border-radius: 16px;
   background: #FFFFFF;
-  padding: 14px 18px;
-  transition: border-color 0.7s ease, box-shadow 0.7s ease,
-              opacity 0.9s ease, transform 0.9s cubic-bezier(0.4,0,0.6,1);
-}
-.formDot { width: 58%; }
-.formLine { width: 74%; }
-.formPlane { width: 92%; }
-
-.formBadge {
-  flex-shrink: 0;
-  font-size: 13px; font-weight: 800; color: #6D3FD6;
-  background: #F1EAFF; padding: 4px 10px; border-radius: 7px;
-  white-space: nowrap;
-}
-.formEn { font-size: 18px; font-weight: 800; color: #111111; white-space: nowrap; }
-.formKo { font-size: 14px; color: #888888; white-space: nowrap; }
-.formRole {
-  margin-left: auto;
-  font-size: 14px; font-weight: 700; color: #6D3FD6;
-  opacity: 0; transform: translateX(-8px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  white-space: nowrap;
-}
-.formRole.shown { opacity: 1; transform: translateX(0); }
-
-.formActive {
-  border-color: #8B5CFF;
-  box-shadow: 0 0 0 4px rgba(139, 92, 255, 0.12), 0 4px 16px rgba(139, 92, 255, 0.25);
+  padding: 2rem 1.3rem 1.6rem;
+  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  min-height: 260px;
+  justify-content: center;
+  touch-action: none; /* 드래그 중 화면 스크롤 방지 */
 }
 
-.formCollapse {
-  opacity: 0;
-  transform: translateY(-40px) scale(0.3);
+/* ---------- 문장 뼈대 ---------- */
+.sentenceRow {
+  display: flex; align-items: baseline; gap: 10px;
+  font-size: 21px; flex-wrap: wrap; justify-content: center;
+}
+
+.nounBox {
+  position: relative;
+  font-weight: 800; color: #111111;
+  border-bottom: 3px solid #FF4A5A;
+  padding: 4px 6px 2px;
+  cursor: pointer;
+  user-select: none;
+}
+.nounShake { animation: nounShake 0.35s ease; }
+@keyframes nounShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}
+
+/* 회색 반사 쉴드 파장 */
+.shieldRing {
+  position: absolute;
+  inset: -8px;
+  border: 3px solid #9CA3AF;
+  border-radius: 12px;
+  animation: shieldWave 0.45s ease-out forwards;
   pointer-events: none;
 }
-/* 압축 시 각 카드가 중앙(구슬 위치)으로 모이도록 미세 차등 */
-.formDot.formCollapse { transform: translateY(60px) scale(0.25); }
-.formLine.formCollapse { transform: translateY(0px) scale(0.25); }
-.formPlane.formCollapse { transform: translateY(-60px) scale(0.25); }
+@keyframes shieldWave {
+  from { opacity: 0.9; transform: scale(0.85); }
+  to   { opacity: 0; transform: scale(1.35); }
+}
 
-/* --- 구슬 --- */
-.bead {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0.3);
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  opacity: 0;
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+.verbBox {
+  position: relative;
+  font-weight: 800; color: #FFFFFF;
+  background: #F5A623;
+  border-radius: 10px;
+  padding: 5px 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
 }
-.beadShown { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-.beadCore {
-  width: 74px; height: 74px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #C4A9FF, #8B5CFF);
-  box-shadow: 0 0 26px 6px rgba(139, 92, 255, 0.5);
-  animation: beadPulse 1.6s ease-in-out infinite;
+.verbHint {
+  box-shadow: 0 0 0 4px rgba(139, 92, 255, 0.18), 0 0 18px rgba(139, 92, 255, 0.4);
+  animation: verbBreath 1.4s ease-in-out infinite;
 }
-.beadLabel { font-size: 16px; font-weight: 800; color: #6D3FD6; }
-@keyframes beadPulse {
+@keyframes verbBreath {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+  50% { transform: scale(1.04); }
+}
+.verbFusing {
+  transform: scale(1.15);
+  box-shadow: 0 0 26px 8px rgba(139, 92, 255, 0.55);
+}
+.fusedAdverb { color: #E9DDFF; font-weight: 800; }
+.period { font-size: 21px; font-weight: 800; color: #111; }
+
+.dropHint {
+  outline: 2px dashed #8B5CFF;
+  outline-offset: 4px;
+  border-radius: 10px;
 }
 
-/* --- 요약 --- */
-.collapseSummary {
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
-  opacity: 0; transform: translateY(10px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+.fusedTail { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.fusedChip {
+  font-size: 15px; font-weight: 700; color: #6D3FD6;
+  background: #F1EAFF; padding: 5px 12px; border-radius: 9px;
 }
-.collapseSummary.shown { opacity: 1; transform: translateY(0); }
-.summaryLine { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+
+/* ---------- 구슬 ---------- */
+.beadArea { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+.beadObj {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px;
+  min-width: 96px; min-height: 96px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #C4A9FF, #8B5CFF);
+  box-shadow: 0 0 22px 5px rgba(139, 92, 255, 0.45);
+  cursor: grab;
+  user-select: none;
+  padding: 10px 16px;
+  animation: beadPulse 1.6s ease-in-out infinite;
+  transition: transform 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28), border-radius 0.7s ease;
+  touch-action: none;
+}
+.beadObj:active { cursor: grabbing; }
+@keyframes beadPulse {
+  0%, 100% { box-shadow: 0 0 22px 5px rgba(139, 92, 255, 0.45); }
+  50% { box-shadow: 0 0 30px 9px rgba(139, 92, 255, 0.6); }
+}
+
+/* 구/절: 같은 구슬이 옆으로 늘어난 알약형 (같은 색·재질 유지) */
+.beadStretched {
+  border-radius: 48px;
+  min-height: 64px;
+}
+
+.beadSelected {
+  outline: 3px solid #6D3FD6;
+  outline-offset: 4px;
+}
+
+.beadBounce { animation: beadBounceBack 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28); }
+@keyframes beadBounceBack {
+  0% { transform: translate(0, -40px) scale(1.05); }
+  55% { transform: translate(0, 8px) scale(0.96); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.beadText { font-size: 17px; font-weight: 800; color: #FFFFFF; text-align: center; }
+.beadKo { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.85); }
+
+.tapTip { font-size: 12.5px; color: #6D3FD6; font-weight: 600; }
+
+/* ---------- 버튼 / 안내 ---------- */
+.startBtn {
+  font-size: 15px; font-weight: 800;
+  padding: 11px 26px; border-radius: 11px;
+  border: none; background: #8B5CFF; color: #FFFFFF;
+  cursor: pointer; font-family: inherit;
+  box-shadow: 0 4px 14px rgba(139, 92, 255, 0.4);
+}
+
+.guide {
+  font-size: 16px; color: #444444; text-align: center; line-height: 1.7;
+  min-height: 28px;
+}
+.guide strong { color: #6D3FD6; }
+
+/* ---------- 클리어 ---------- */
+.clearedWrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.summaryChips { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .sumChip {
   font-size: 14px; font-weight: 700; color: #6D3FD6;
   background: #F1EAFF; padding: 5px 12px; border-radius: 8px;
 }
-.collapseCaption { font-size: 16px; color: #444; text-align: center; line-height: 1.7; }
-.shown { opacity: 1; }
-.collapseCaption strong, .moldCaption strong { color: #6D3FD6; }
-
-/* ================================================================
-   ② Nuance Molding
-   ================================================================ */
-.factRow { display: flex; align-items: center; gap: 10px; justify-content: center; }
-.factTag {
-  font-size: 11px; font-weight: 800; color: #888;
-  background: #F1F1F1; padding: 3px 8px; border-radius: 6px;
-}
-.factSentence { font-size: 16px; font-weight: 600; color: #111; }
-
-.moldStage {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  padding: 0.5rem 0;
-}
-.moldBeadTrack { height: 26px; display: flex; align-items: center; justify-content: center; }
-.moldBead {
-  width: 20px; height: 20px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #C4A9FF, #8B5CFF);
-  box-shadow: 0 0 10px 2px rgba(139, 92, 255, 0.45);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-.moldBeadGone { opacity: 0; transform: translateY(14px) scale(0.4); }
-
-.moldSentence { font-size: 18px; color: #111; }
-.moldVerb { font-weight: 700; display: inline-block; transition: all 0.6s ease; }
-
-.moldFast { color: #B9600A; transform: skewX(-8deg); text-shadow: 2px 0 6px rgba(255,153,51,0.4); }
-.moldCareful { color: #1E40C4; font-weight: 800; text-shadow: 0 0 8px rgba(74,124,255,0.35); }
-.moldReluctant { color: #8A7A9E; transform: translateY(3px); opacity: 0.75; }
-
-.compareGrid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
-  opacity: 0; transform: translateY(10px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.compareGrid.shown { opacity: 1; transform: translateY(0); }
-.compareCol {
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  background: #FAFAFA; border-radius: 10px; padding: 0.7rem 0.5rem;
-}
-.compareVerb { font-size: 14px; font-weight: 800; }
-.compareKo { font-size: 12px; color: #666; }
-.compareDesc { font-size: 10.5px; color: #999; text-align: center; line-height: 1.4; }
-
-.moldCaption { font-size: 14px; color: #444; text-align: center; opacity: 0; transition: opacity 0.6s ease; }
-
-/* ---------- 최종: 뼈대 고정 + 자유 이동 부사 구슬 ---------- */
-.axisDemo {
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  opacity: 0; transition: opacity 0.6s ease;
-  padding-top: 0.4rem;
-}
-.axisDemo.shown { opacity: 1; }
-.axisSentence { font-size: 15px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: center; min-height: 40px; }
-.axisBadge { padding: 6px 10px; border-radius: 8px; color: #fff; font-weight: 800; font-size: 13px; }
-.freeBead {
-  color: #6D3FD6; font-weight: 700; font-size: 13px;
-  background: #F1EAFF; padding: 3px 8px; border-radius: 7px;
-  transition: opacity 0.4s ease;
-}
-.axisNote { font-size: 11.5px; color: #999; text-align: center; }
-
 .clearedStamp {
-  align-self: center;
-  font-size: 16px; font-weight: 800; letter-spacing: 0.06em;
+  font-size: 17px; font-weight: 800; letter-spacing: 0.06em;
   color: #FFFFFF; background: #111111;
-  padding: 8px 18px; border-radius: 10px;
-  opacity: 0; transform: scale(0.7) rotate(-3deg);
-  transition: opacity 0.35s ease 0.3s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1) 0.3s;
+  padding: 9px 20px; border-radius: 10px;
+  transform: rotate(-3deg);
+  animation: stampIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.stampShown { opacity: 1; transform: scale(1) rotate(-3deg); }
+@keyframes stampIn {
+  from { opacity: 0; transform: scale(0.6) rotate(-3deg); }
+  to   { opacity: 1; transform: scale(1) rotate(-3deg); }
+}
 
 @media (max-width: 520px) {
-  .compareGrid { grid-template-columns: 1fr; }
+  .sentenceRow { font-size: 18px; }
+  .beadText { font-size: 15px; }
 }
