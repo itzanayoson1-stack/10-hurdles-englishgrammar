@@ -14,36 +14,78 @@ import styles from './AdverbBead.module.css'
 const SCENES = ['① 부사 구슬로 수렴', '② 뉘앙스 빚기']
 
 // ----------------------------------------------------------------
-// Scene 1 — Cognitive Collapse
+// Scene 1 — Cognitive Collapse (재설계판)
+// 기준 문장(He solved the problem.)을 먼저 고정하고,
+// 점(단어)/선(구)/면(절) 카드가 하나씩 켜지며 "→ solved를 꾸민다"를
+// 3회 반복 확인한 뒤에야 구슬로 압축된다.
+// phase: 0 대기 → 1/2/3 카드 순차 활성화 → 4 압축 → 5 구슬+요약
 // ----------------------------------------------------------------
+const ADVERB_FORMS = [
+  { badge: '점 · 단어', en: 'quickly', ko: '빠르게', width: 'formDot' },
+  { badge: '선 · 구', en: 'in a hurry', ko: '서둘러서', width: 'formLine' },
+  { badge: '면 · 절', en: 'because he was late', ko: '늦었기 때문에', width: 'formPlane' },
+]
+
 function SceneCollapse({ active }) {
-  const [phase, setPhase] = useState(0) // 0 대기 1 압축 2 구슬 완성
+  const [phase, setPhase] = useState(0)
   const timers = useRef([])
   const clear = () => { timers.current.forEach(clearTimeout); timers.current = [] }
 
   const play = useCallback(() => {
     clear()
     setPhase(0)
-    timers.current.push(setTimeout(() => setPhase(1), 700))
-    timers.current.push(setTimeout(() => setPhase(2), 1700))
+    timers.current.push(setTimeout(() => setPhase(1), 900))   // 점 활성화
+    timers.current.push(setTimeout(() => setPhase(2), 2400))  // 선 활성화
+    timers.current.push(setTimeout(() => setPhase(3), 3900))  // 면 활성화
+    timers.current.push(setTimeout(() => setPhase(4), 5600))  // 압축 시작
+    timers.current.push(setTimeout(() => setPhase(5), 6700))  // 구슬 + 요약
   }, [])
 
   useEffect(() => { if (active) play(); return clear }, [active, play])
 
   return (
     <div className={styles.sceneBox}>
-      <div className={`${styles.collapseStage} ${styles['cp' + phase]}`}>
-        <span className={`${styles.chip} ${styles.chipDot}`}>quickly</span>
-        <span className={`${styles.chip} ${styles.chipLine}`}>in a hurry</span>
-        <span className={`${styles.chip} ${styles.chipPlane}`}>because he was late</span>
+      {/* 기준 문장 — 부사가 꾸밀 대상(동사)을 먼저 보여준다 */}
+      <div className={styles.baseSentence}>
+        He <span className={styles.baseVerb}>solved</span> the problem
+        <span className={styles.baseSlot}>{phase >= 1 && phase < 4 ? ' + ?' : '.'}</span>
+      </div>
 
-        <div className={styles.bead}>
+      <div className={`${styles.collapseStage} ${styles['cp' + phase]}`}>
+        {ADVERB_FORMS.map((f, i) => (
+          <div
+            key={f.en}
+            className={[
+              styles.formCard,
+              styles[f.width],
+              phase >= i + 1 && phase < 4 ? styles.formActive : '',
+              phase >= 4 ? styles.formCollapse : '',
+            ].join(' ')}
+          >
+            <span className={styles.formBadge}>{f.badge}</span>
+            <span className={styles.formEn}>{f.en}</span>
+            <span className={styles.formKo}>{f.ko}</span>
+            <span className={`${styles.formRole} ${phase >= i + 1 && phase < 4 ? styles.shown : ''}`}>
+              → solved를 꾸민다
+            </span>
+          </div>
+        ))}
+
+        <div className={`${styles.bead} ${phase >= 5 ? styles.beadShown : ''}`}>
           <span className={styles.beadCore} />
+          <span className={styles.beadLabel}>부사</span>
         </div>
       </div>
 
-      <div className={`${styles.collapseCaption} ${phase === 2 ? styles.shown : ''}`}>
-        형태는 셋(점·선·면), <strong>역할은 하나</strong> — 부사 구슬
+      <div className={`${styles.collapseSummary} ${phase >= 5 ? styles.shown : ''}`}>
+        <div className={styles.summaryLine}>
+          <span className={styles.sumChip}>quickly</span>
+          <span className={styles.sumChip}>in a hurry</span>
+          <span className={styles.sumChip}>because he was late</span>
+        </div>
+        <div className={styles.collapseCaption}>
+          형태는 셋(점·선·면)이지만 <strong>역할은 하나</strong> — 전부 solved를 꾸미는 부사입니다
+        </div>
       </div>
 
       <button type="button" className={styles.replaySm} onClick={play}>↺ 다시 보기</button>

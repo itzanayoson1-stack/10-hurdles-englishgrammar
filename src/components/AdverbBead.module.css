@@ -31,47 +31,107 @@
 }
 
 /* ================================================================
-   ① Cognitive Collapse — 점/선/면 부사 -> 구슬 압축
+   ① Cognitive Collapse — 재설계판
+   기준 문장 고정 → 카드 순차 활성화 → 압축 → 구슬 + 요약
    ================================================================ */
+.baseSentence {
+  font-size: 19px; font-weight: 600; color: #111111; text-align: center;
+}
+.baseVerb {
+  background: #F5A623; color: #FFFFFF; font-weight: 800;
+  padding: 3px 12px; border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(245, 166, 35, 0.35);
+}
+.baseSlot { color: #8B5CFF; font-weight: 800; }
+
 .collapseStage {
   position: relative;
-  height: 190px;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  padding: 0.8rem 0;
+  min-height: 240px;
+  justify-content: center;
 }
 
-.chip {
-  position: absolute;
-  background: #9CA3AF; color: #fff; font-weight: 700;
-  border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.4,0,0.6,1);
+/* --- 형태 카드: 점 < 선 < 면 순으로 폭이 넓어짐 --- */
+.formCard {
+  display: flex; align-items: center; gap: 12px;
+  border: 2px solid #E0E0E0; border-radius: 14px;
+  background: #FFFFFF;
+  padding: 14px 18px;
+  transition: border-color 0.7s ease, box-shadow 0.7s ease,
+              opacity 0.9s ease, transform 0.9s cubic-bezier(0.4,0,0.6,1);
 }
-.chipDot { top: 14%; left: 10%; font-size: 13px; padding: 6px 10px; }
-.chipLine { top: 40%; right: 6%; font-size: 13px; padding: 6px 16px; }
-.chipPlane { bottom: 12%; left: 14%; font-size: 13px; padding: 8px 20px; }
+.formDot { width: 58%; }
+.formLine { width: 74%; }
+.formPlane { width: 92%; }
 
-.cp1 .chipDot, .cp2 .chipDot { opacity: 0; transform: scale(0.2) translate(40%, 60%) rotate(30deg); }
-.cp1 .chipLine, .cp2 .chipLine { opacity: 0; transform: scale(0.2) translate(-50%, 20%) rotate(-20deg); }
-.cp1 .chipPlane, .cp2 .chipPlane { opacity: 0; transform: scale(0.2) translate(30%, -50%) rotate(15deg); }
+.formBadge {
+  flex-shrink: 0;
+  font-size: 13px; font-weight: 800; color: #6D3FD6;
+  background: #F1EAFF; padding: 4px 10px; border-radius: 7px;
+  white-space: nowrap;
+}
+.formEn { font-size: 18px; font-weight: 800; color: #111111; white-space: nowrap; }
+.formKo { font-size: 14px; color: #888888; white-space: nowrap; }
+.formRole {
+  margin-left: auto;
+  font-size: 14px; font-weight: 700; color: #6D3FD6;
+  opacity: 0; transform: translateX(-8px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  white-space: nowrap;
+}
+.formRole.shown { opacity: 1; transform: translateX(0); }
 
+.formActive {
+  border-color: #8B5CFF;
+  box-shadow: 0 0 0 4px rgba(139, 92, 255, 0.12), 0 4px 16px rgba(139, 92, 255, 0.25);
+}
+
+.formCollapse {
+  opacity: 0;
+  transform: translateY(-40px) scale(0.3);
+  pointer-events: none;
+}
+/* 압축 시 각 카드가 중앙(구슬 위치)으로 모이도록 미세 차등 */
+.formDot.formCollapse { transform: translateY(60px) scale(0.25); }
+.formLine.formCollapse { transform: translateY(0px) scale(0.25); }
+.formPlane.formCollapse { transform: translateY(-60px) scale(0.25); }
+
+/* --- 구슬 --- */
 .bead {
-  width: 46px; height: 46px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transform: scale(0.3);
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.3);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
 }
-.cp2 .bead { opacity: 1; transform: scale(1); }
+.beadShown { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 .beadCore {
-  width: 100%; height: 100%; border-radius: 50%;
+  width: 74px; height: 74px; border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #C4A9FF, #8B5CFF);
-  box-shadow: 0 0 18px 4px rgba(139, 92, 255, 0.45);
+  box-shadow: 0 0 26px 6px rgba(139, 92, 255, 0.5);
   animation: beadPulse 1.6s ease-in-out infinite;
 }
+.beadLabel { font-size: 16px; font-weight: 800; color: #6D3FD6; }
 @keyframes beadPulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
 
-.collapseCaption { font-size: 15px; color: #444; text-align: center; opacity: 0; transition: opacity 0.6s ease; }
+/* --- 요약 --- */
+.collapseSummary {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.collapseSummary.shown { opacity: 1; transform: translateY(0); }
+.summaryLine { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.sumChip {
+  font-size: 14px; font-weight: 700; color: #6D3FD6;
+  background: #F1EAFF; padding: 5px 12px; border-radius: 8px;
+}
+.collapseCaption { font-size: 16px; color: #444; text-align: center; line-height: 1.7; }
 .shown { opacity: 1; }
 .collapseCaption strong, .moldCaption strong { color: #6D3FD6; }
 
