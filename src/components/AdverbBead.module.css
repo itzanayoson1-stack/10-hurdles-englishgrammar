@@ -15,6 +15,54 @@
   cursor: pointer; font-family: inherit;
 }
 
+/* ================================================================
+   Neal.fun 모드 — 빌드업 / 클라이맥스 (여백 + 한 문장씩 전진)
+   보더/그림자 없음, 순수 여백으로 샌드박스 모드와 시각적 대비
+   ================================================================ */
+.buildStage {
+  position: relative;
+  min-height: 220px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px;
+  cursor: pointer;
+  padding: 2rem 1rem;
+}
+
+.buildSentence {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; justify-content: center;
+}
+.buildFade {
+  font-size: 28px; font-weight: 800; color: #111111;
+  animation: buildIn 0.6s ease;
+}
+.buildVerb { color: #F5A623; }
+@keyframes buildIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.buildCaption {
+  font-size: 17px; color: #888888; animation: buildIn 0.6s ease;
+}
+.buildLine {
+  font-size: 24px; font-weight: 700; color: #6D3FD6; animation: buildIn 0.6s ease;
+  text-align: center;
+}
+.buildLineBig {
+  font-size: 30px; font-weight: 800; color: #111111; animation: buildIn 0.6s ease;
+  text-align: center; line-height: 1.4;
+}
+
+.buildHint {
+  position: absolute; bottom: 10px; right: 16px;
+  font-size: 20px; color: #cccccc; font-weight: 800;
+  animation: hintPulse 1.4s ease-in-out infinite;
+}
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.4; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(3px); }
+}
+
 /* ---------- 스테이지 ---------- */
 .stage {
   border: 1.5px solid #E0E0E0; border-radius: 16px;
