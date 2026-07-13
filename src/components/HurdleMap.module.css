@@ -23,13 +23,31 @@
   background: var(--bg-card);
   padding: 1.2rem 1rem;
   cursor: pointer;
-  min-height: 115px;
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: background 0.15s;
   border-left: 2px solid transparent;
 }
+
+/* 손그림풍 허들 아이콘 — 카드 고유 색상을 그대로 사용 */
+.icon {
+  width: 44px;
+  height: 30px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+.iconStroke {
+  stroke: var(--hurdle-accent, var(--text3));
+  opacity: 0.85;
+}
+.iconJump {
+  stroke: var(--hurdle-accent, var(--success));
+  opacity: 0.55;
+  stroke-dasharray: 3 4;
+}
+.locked .iconStroke { stroke: var(--text3); opacity: 0.35; }
 
 .card::before {
   content: '';
