@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="270" height="190" viewBox="0 0 270 190" fill="none">
+          <defs>
+            <filter id="sketch5" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="63" result="n"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"></feDisplacementMap>
+            </filter>
+          </defs>
+          <g filter="url(#sketch5)">
+            
+            <path d="M135 72 L 158 88 L 158 116 L 135 132 L 112 116 L 112 88 Z" fill="#14b8a6" stroke="#191919" stroke-width="7" stroke-linejoin="round"></path>
+            <circle cx="135" cy="102" r="7" fill="#ffffff"></circle>
+
+            
+            <path d="M55 42 L 102 82" stroke="#191919" stroke-width="4" stroke-linecap="round"></path>
+            <text x="16" y="34" font-family="Gaegu" font-size="20" font-weight="700" fill="#191919" transform="rotate(-6 16 34)">분사</text>
+
+            <path d="M215 42 L 168 82" stroke="#191919" stroke-width="4" stroke-linecap="round"></path>
+            <text x="196" y="30" font-family="Gaegu" font-size="20" font-weight="700" fill="#191919" transform="rotate(5 196 30)">관계사절</text>
+
+            <path d="M55 160 L 102 122" stroke="#191919" stroke-width="4" stroke-linecap="round"></path>
+            <text x="6" y="178" font-family="Gaegu" font-size="20" font-weight="700" fill="#191919" transform="rotate(4 6 178)">현재진행형</text>
+
+            <path d="M215 160 L 168 122" stroke="#191919" stroke-width="4" stroke-linecap="round"></path>
+            <text x="205" y="178" font-family="Gaegu" font-size="20" font-weight="700" fill="#191919" transform="rotate(-5 205 178)">수동태</text>
+          </g>
+        </svg>

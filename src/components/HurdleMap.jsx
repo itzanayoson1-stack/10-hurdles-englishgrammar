@@ -1,20 +1,7 @@
 import styles from './HurdleMap.module.css'
 
-// 손그림풍 육상 허들 아이콘 — 썸네일 위 작은 배지로 사용 (기존 작업 계승)
-function HurdleIcon({ cleared }) {
-  return (
-    <svg className={styles.icon} viewBox="0 0 64 44" aria-hidden="true">
-      <path d="M10 6 C 9 18, 11 30, 9 40" fill="none" strokeWidth="3.5" strokeLinecap="round" className={styles.iconStroke} />
-      <path d="M54 5 C 55 17, 53 29, 55 40" fill="none" strokeWidth="3.5" strokeLinecap="round" className={styles.iconStroke} />
-      <path d="M6 14 C 22 12, 44 16, 58 13" fill="none" strokeWidth="3.5" strokeLinecap="round" className={styles.iconStroke} />
-      <path d="M6 22 C 22 20, 44 24, 58 21" fill="none" strokeWidth="3.5" strokeLinecap="round" className={styles.iconStroke} />
-      <path d="M6 30 C 22 28, 44 32, 58 29" fill="none" strokeWidth="3.5" strokeLinecap="round" className={styles.iconStroke} />
-      {cleared && (
-        <path d="M4 40 C 20 8, 44 8, 60 40" fill="none" strokeWidth="4" strokeLinecap="round" className={styles.iconJump} />
-      )}
-    </svg>
-  )
-}
+// 코치님이 직접 제작한 허들별 고유 손그림 일러스트 (public/hurdle-icons/ 에 위치)
+const iconPath = (id) => `/hurdle-icons/hurdle-${String(id).padStart(2, '0')}-icon.svg`
 
 export default function HurdleMap({ hurdles, selectedId, isCleared, isUnlocked, onSelect }) {
   return (
@@ -44,9 +31,13 @@ export default function HurdleMap({ hurdles, selectedId, isCleared, isUnlocked, 
               ].join(' ')}
               onClick={() => unlocked && onSelect(h.id)}
             >
-              {/* 썸네일: 실제 이미지 준비되면 이 div의 background만 url(...)로 교체 */}
               <div className={styles.thumb}>
-                <HurdleIcon cleared={cleared} />
+                <img
+                  className={styles.thumbImg}
+                  src={iconPath(h.id)}
+                  alt={`HURDLE ${String(h.id).padStart(2, '0')} — ${h.title}`}
+                  loading="lazy"
+                />
                 {!unlocked && (
                   <div className={styles.lockOverlay}>
                     <span className={styles.lockIcon}>🔒</span>

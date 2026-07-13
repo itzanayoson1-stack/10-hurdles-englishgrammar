@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="150" viewBox="0 0 250 150" fill="none">
+          <defs>
+            <filter id="sketch3" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="39" result="n"></feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"></feDisplacementMap>
+            </filter>
+          </defs>
+          <g filter="url(#sketch3)">
+            
+            <path d="M10 126 L 236 126" stroke="#191919" stroke-width="3" opacity="0.4"></path>
+
+            
+            <path d="M38 126 L 38 92 C 38 82, 46 76, 56 76 L 100 76 C 110 76, 116 82, 116 92 L 116 126 Z" fill="#ffffff" stroke="#191919" stroke-width="7" stroke-linejoin="round"></path>
+            <path d="M38 100 L 116 100" stroke="#191919" stroke-width="5"></path>
+            
+            <circle cx="54" cy="112" r="4.2" fill="#191919"></circle>
+            <circle cx="70" cy="112" r="4.2" fill="#191919"></circle>
+            <path d="M52 121 Q 62 126, 72 121" stroke="#191919" stroke-width="4" stroke-linecap="round" fill="none"></path>
+            
+            <path d="M60 76 L 60 58 L 72 58 L 72 76 Z" fill="#ffffff" stroke="#191919" stroke-width="6" stroke-linejoin="round"></path>
+            <path d="M64 52 Q 56 42, 66 34 Q 74 26, 66 16" stroke="#191919" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.85"></path>
+            <path d="M80 46 Q 88 38, 80 26" stroke="#191919" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.55"></path>
+            
+            <circle cx="56" cy="126" r="12" fill="#ffcb05" stroke="#191919" stroke-width="6"></circle>
+            <circle cx="96" cy="126" r="12" fill="#ffcb05" stroke="#191919" stroke-width="6"></circle>
+
+            
+            <path d="M116 116 L 132 116" stroke="#191919" stroke-width="5" stroke-linecap="round"></path>
+
+            
+            <rect x="132" y="92" width="36" height="34" rx="5" fill="#ffffff" stroke="#191919" stroke-width="6"></rect>
+            <circle cx="140" cy="126" r="9" fill="#ffffff" stroke="#191919" stroke-width="5"></circle>
+            <circle cx="160" cy="126" r="9" fill="#ffffff" stroke="#191919" stroke-width="5"></circle>
+
+            <path d="M168 116 L 182 116" stroke="#191919" stroke-width="5" stroke-linecap="round"></path>
+            <rect x="182" y="98" width="32" height="28" rx="5" fill="#ffffff" stroke="#191919" stroke-width="6"></rect>
+            <circle cx="190" cy="126" r="8" fill="#ffffff" stroke="#191919" stroke-width="4.5"></circle>
+            <circle cx="207" cy="126" r="8" fill="#ffffff" stroke="#191919" stroke-width="4.5"></circle>
+
+            
+            <path d="M12 104 Q 22 101, 28 104" stroke="#191919" stroke-width="4" stroke-linecap="round" opacity="0.65"></path>
+            <path d="M8 118 Q 18 115, 25 118" stroke="#191919" stroke-width="4" stroke-linecap="round" opacity="0.45"></path>
+          </g>
+        </svg>

@@ -62,29 +62,33 @@
 .card[data-hurdle="9"]  { --hurdle-accent: var(--hurdle-9, #FF7A50); }
 .card[data-hurdle="10"] { --hurdle-accent: var(--hurdle-10, #6B7280); }
 
-/* ---------- 썸네일 (16:9) ---------- */
+/* ---------- 썸네일 (16:9) — 코치님 제작 손그림 SVG 일러스트 ---------- */
 .thumb {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--hurdle-accent) 22%, #FFFFFF), color-mix(in srgb, var(--hurdle-accent) 55%, #FFFFFF));
+  background: color-mix(in srgb, var(--hurdle-accent) 8%, #FAFAFA);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10%;
   transition: filter 0.22s ease, opacity 0.22s ease;
 }
-/* 실제 썸네일 이미지가 준비되면:
-   .thumb { background: url('/thumbs/hurdle-06.jpg') center/cover; } 로 교체 */
+
+.thumbImg {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card:hover:not(.locked) .thumbImg { transform: scale(1.05); }
 
 .locked .thumb {
   filter: grayscale(1);
   opacity: 0.55;
 }
-
-.icon { width: 30%; max-width: 84px; height: auto; }
-.iconStroke { stroke: #FFFFFF; opacity: 0.9; }
-.iconJump { stroke: #FFFFFF; opacity: 0.6; stroke-dasharray: 3 4; }
-.locked .iconStroke { stroke: #FFFFFF; opacity: 0.7; }
 
 .lockOverlay {
   position: absolute;
