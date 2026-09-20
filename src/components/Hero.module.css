@@ -9,20 +9,20 @@
 .desc { font-size: 14px; color: var(--text2); line-height: 1.9; margin-bottom: 18px; }
 .progressWrap { max-width: 400px; margin-bottom: 24px; }
 .progressLabel { display: flex; justify-content: space-between; font-size: 12px; color: var(--text2); margin-bottom: 10px; }
-.progressBg { height: 6px; background: #dddcd1; border-radius: 4px; overflow: hidden; }
+.progressBg { height: 6px; background: #d9d8d5; border-radius: 4px; overflow: hidden; }
 .progressFill { height: 100%; background: var(--green); transition: width .4s ease; }
-.startBtn { background: var(--black); color: var(--cream); font-weight: 800; font-size: 14px; padding: 16px 26px; border: 0; border-radius: 8px; transition: background .2s; }
+.startBtn { background: linear-gradient(160deg, #383838, #151515); box-shadow: inset 0 1px 0 #ffffff30, 0 3px 0 #090909, 0 8px 14px #0000001c; color: var(--cream); font-weight: 800; font-size: 14px; padding: 16px 26px; border: 0; border-radius: 8px; transition: background .2s; }
 .startBtn:hover { background: var(--green); }
 .startBtn:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
-.tilePanel { min-width: 0; aspect-ratio: 1.25; border-radius: 72px 16px 16px 16px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; background-color: #629480; background-image: linear-gradient(135deg, #ffffff24, transparent 48%, #153d2d22), linear-gradient(#e7eed357 1px, transparent 1px), linear-gradient(90deg, #e7eed357 1px, transparent 1px); background-size: 100% 100%, 28px 28px, 28px 28px; border: 1px solid #547d68; box-shadow: inset 0 1px 0 #e6efce66, 0 14px 0 -8px #dcded0; }
-.panelTop, .panelBottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 10px; font-weight: 800; letter-spacing: .07em; color: #14271e; }
+.tilePanel { min-width: 0; aspect-ratio: 1.25; border-radius: 72px 16px 16px 16px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; background-color: #dadbd8; background-image: linear-gradient(135deg, #ffffffb0, transparent 48%, #00000012), linear-gradient(#ffffff80 1px, #0000000c 2px, transparent 3px), linear-gradient(90deg, #ffffff80 1px, #0000000c 2px, transparent 3px); background-size: 100% 100%, 28px 28px, 28px 28px; border: 1px solid #bdbfbb; box-shadow: inset 1px 1px 0 #ffffffdd, inset -1px -2px 1px #00000018, 0 5px 0 -1px #b7b9b5, 0 22px 32px -20px #00000066; }
+.panelTop, .panelBottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 10px; font-weight: 800; letter-spacing: .07em; color: #383838; }
 .panelTop { padding-left: 24px; }
-.tileWord { font-family: 'Arial Black', 'Pretendard', sans-serif; font-size: clamp(58px, 6vw, 82px); font-weight: 900; letter-spacing: -.075em; line-height: .95; color: #151c17; text-shadow: 0 2px 0 #ffffff25; margin: 28px 0; }
+.tileWord { font-family: 'Arial Black', 'Pretendard', sans-serif; font-size: clamp(58px, 6vw, 82px); font-weight: 900; letter-spacing: -.075em; line-height: .95; color: #222; text-shadow: 0 1px 0 #080808, 1px 3px 0 #555, 2px 6px 6px #00000022; margin: 28px 0; }
 .blocks { display: flex; gap: 10px; align-items: center; margin-bottom: 24px; }
-.blocks span { width: 68px; height: 64px; display: grid; place-items: center; font-size: 29px; font-weight: 900; border: 1px solid #273b2b; border-radius: 7px; box-shadow: 3px 4px 0 #23382c; background: #f0eddc; color: #17241c; }
-.blocks span:nth-child(2) { background: #e2bb74; transform: rotate(-6deg); }
-.blocks span:nth-child(3) { background: #b5c5df; }
-.panelBottom { border-top: 1px solid #23382c60; padding-top: 14px; }
+.blocks span { width: 68px; height: 64px; display: grid; place-items: center; font-size: 29px; font-weight: 900; border: 1px solid #a7a7a3; border-radius: 7px; box-shadow: inset 0 2px 0 #ffffffc0, 2px 4px 0 #9c9d98, 4px 8px 10px #00000025; background: linear-gradient(145deg, #fff, #e5e4e0); color: #222; }
+.blocks span:nth-child(2) { background: linear-gradient(145deg, #454545, #222); color: #fff; box-shadow: inset 0 1px 0 #ffffff40, 2px 4px 0 #151515, 4px 8px 10px #00000030; transform: rotate(-6deg); }
+.blocks span:nth-child(3) { background: linear-gradient(145deg, #eeeeec, #c6c8c4); }
+.panelBottom { border-top: 1px solid #62626240; padding-top: 14px; }
 .panelBottom span:last-child { font-size: 28px; }
 @media (max-width: 760px) { .hero { grid-template-columns: 1fr; padding: 32px 20px 40px; gap: 32px; } .title { font-size: clamp(44px, 10vw, 72px); } .tag { margin-bottom: 24px; } .tilePanel { aspect-ratio: 1.2; padding: 24px; border-top-left-radius: 52px; } .tileWord { font-size: clamp(62px, 15vw, 100px); margin: 24px 0; } .panelTop { padding-left: 16px; } }
 @media (prefers-reduced-motion: reduce) { .progressFill, .startBtn { transition: none; } }
