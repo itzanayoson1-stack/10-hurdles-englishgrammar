@@ -67,7 +67,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: linear-gradient(145deg, #efefec, #dddedb);
+  background: color-mix(in srgb, var(--hurdle-accent) 8%, #FAFAFA);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,13 +86,12 @@
   width: 100%;
   padding: 6%;
   object-fit: contain;
-  filter: grayscale(1);
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .card:hover:not(.locked) .thumbImg { transform: scale(1.05); }
 
 .locked .thumb {
-  filter: saturate(.65);
+  filter: none;
 }
 
 .lockOverlay {
