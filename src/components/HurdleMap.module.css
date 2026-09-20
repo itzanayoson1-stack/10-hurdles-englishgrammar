@@ -4,7 +4,7 @@
    TenHurdles 정체성(화이트 배경 + 미니멀 테두리) 유지
    ================================================================ */
 
-.wrap { padding: 2rem 1.5rem; }
+.wrap { max-width: 1280px; margin: auto; padding: 2rem 1.5rem; }
 
 .label {
   font-size: 11px;
@@ -31,7 +31,7 @@
 /* ---------- 카드 ---------- */
 .card {
   position: relative;
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border, #E5E5E5);
   border-radius: 14px;
   overflow: hidden;
@@ -71,31 +71,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8% 6%;
+  overflow: hidden;
+  flex-shrink: 0;
   transition: filter 0.22s ease, opacity 0.22s ease;
 }
 
-/* 원본 SVG 비율이 제각각(1.04~1.67:1)이라, 세로 기준으로 통일해서
-   카드마다 그림 크기가 고르게 보이도록 함. 모든 아이콘 비율이
-   16:9(1.78:1)보다 좁아 가로로 잘릴 일은 없음. */
+/* Absolute positioning prevents intrinsic SVG dimensions from expanding
+   the 16:9 frame; contain preserves the entire illustration. */
 .thumbImg {
+  position: absolute;
+  inset: 0;
+  display: block;
   height: 100%;
-  width: auto;
-  max-width: 100%;
+  width: 100%;
+  padding: 6%;
   object-fit: contain;
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .card:hover:not(.locked) .thumbImg { transform: scale(1.05); }
 
 .locked .thumb {
-  filter: grayscale(1);
-  opacity: 0.55;
+  filter: saturate(.65);
 }
 
 .lockOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(17, 17, 17, 0.45);
+  background: rgba(24, 43, 33, 0.22);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -132,7 +134,7 @@
   color: var(--text, #111111);
   line-height: 1.4;
 }
-.locked .title { color: var(--text3, #999999); }
+.locked .title { color: var(--text2); }
 
 .sub {
   font-size: 12.5px;
