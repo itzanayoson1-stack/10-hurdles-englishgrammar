@@ -1,16 +1,19 @@
+import { quizKey } from '../utils/progressStore'
+import { nextPublished } from '../config/release'
 import styles from './QuizBox.module.css'
 
 export default function QuizBox({ hurdle, answers, onAnswer, onClear, isCleared }) {
-  const allAnswered = hurdle.quizzes.every((_, qi) => answers[qi] !== undefined)
-  const score = hurdle.quizzes.filter((_, qi) => answers[qi] === hurdle.quizzes[qi].answer).length
+  const allAnswered = hurdle.quizzes.length > 0 && hurdle.quizzes.every(q => answers[quizKey(q)] !== undefined)
+  const score = hurdle.quizzes.filter(q => answers[quizKey(q)] === q.answer).length
 
   return (
     <div className={styles.wrap}>
       <div className={styles.title}>퀴즈 — 이 허들을 넘었는가</div>
       {hurdle.quizzes.map((q, qi) => {
-        const answered = answers[qi]
+        const key = quizKey(q)
+        const answered = answers[key]
         return (
-          <div key={qi} className={styles.item}>
+          <div key={key} className={styles.item}>
             <div className={styles.q}>{qi + 1}. {q.q}</div>
             <div className={styles.opts}>
               {q.opts.map((opt, oi) => {
@@ -21,7 +24,7 @@ export default function QuizBox({ hurdle, answers, onAnswer, onClear, isCleared 
                   cls += ' ' + styles.disabled
                 }
                 return (
-                  <button key={oi} className={cls} onClick={() => answered === undefined && onAnswer(qi, oi)}>
+                  <button key={oi} disabled={answered !== undefined} className={cls} onClick={() => answered === undefined && onAnswer(key, oi)}>
                     {opt}
                   </button>
                 )
@@ -52,7 +55,7 @@ export default function QuizBox({ hurdle, answers, onAnswer, onClear, isCleared 
         <div className={styles.toast}>
           <div className={styles.toastTitle}>Hurdle {hurdle.id} Cleared! 🎯</div>
           <div className={styles.toastSub}>
-            {hurdle.id < 10 ? '다음 허들이 열렸습니다.' : '모든 허들을 넘었습니다!'}
+            {nextPublished(hurdle.id) !== null ? '다음 허들이 열렸습니다.' : '공개된 허들을 모두 완료했습니다. 허들 04~10은 준비 중입니다.'}
           </div>
         </div>
       )}

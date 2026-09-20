@@ -1,7 +1,7 @@
 import styles from './Hero.module.css'
 
-export default function Hero({ totalCleared, onStart }) {
-  const pct = (totalCleared / 10) * 100
+export default function Hero({ totalCleared, totalAvailable, onStart }) {
+  const pct = (totalCleared / totalAvailable) * 100
 
   return (
     <section className={styles.hero}>
@@ -19,15 +19,15 @@ export default function Hero({ totalCleared, onStart }) {
       </p>
       <div className={styles.progressWrap}>
         <div className={styles.progressLabel}>
-          <span>진행률</span>
-          <span>{totalCleared} / 10 완료</span>
+          <span>공개된 허들 진행률</span>
+          <span>{totalCleared} / {totalAvailable} 완료</span>
         </div>
         <div className={styles.progressBg}>
           <div className={styles.progressFill} style={{ width: pct + '%' }} />
         </div>
       </div>
       <button className={styles.startBtn} onClick={onStart}>
-        {totalCleared === 0 ? '첫 번째 허들 넘기 →' : '이어서 넘기 →'}
+        {totalCleared === totalAvailable ? '허들 01 복습하기 →' : totalCleared === 0 ? '첫 번째 허들 넘기 →' : '이어서 넘기 →'}
       </button>
     </section>
   )

@@ -1,35 +1,29 @@
-import { useMemo, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { HURDLES, LEVELS } from './data/hurdles'
 import { useProgress } from './hooks/useProgress'
 import { pickQuizzes } from './utils/quizPicker'
 import Hero from './components/Hero'
 import HurdleMap from './components/HurdleMap'
 import HurdleDetail from './components/HurdleDetail'
-import CompletionScreen from './components/CompletionScreen'
+import { PUBLISHED_HURDLE_IDS, isPublished, nextPublished } from './config/release'
 import LevelSelector from './components/LevelSelector'
 import BlogYoutubeSection from './components/BlogYoutubeSection'
 
 export default function App() {
-  const [selectedId, setSelectedId] = useState(null)
+  const [selection, setSelection] = useState(null)
+  const selectedId = selection?.id ?? null
   const mapRef = useRef(null)
   const detailRef = useRef(null)
 
   const {
     level, setLevel, resetLevel,
     isCleared, isUnlocked, clearHurdle,
-    getQuizAnswers, answerQuiz, resetAll, totalCleared
+    getQuizAnswers, answerQuiz, totalCleared
   } = useProgress()
 
-  const baseHurdle = HURDLES.find(h => h.id === selectedId) || null
+  const baseHurdle = HURDLES.find(h => h.id === selectedId && isPublished(h.id) && isUnlocked(h.id)) || null
 
-  // 허들 또는 레벨이 바뀔 때만 새로 뽑는다 (답을 고르는 매 순간마다 다시 뽑지 않도록).
-  // 문제 풀(pool)이 8개보다 적으면 있는 만큼만, 많으면 안 겹치게 최대 8개를 뽑는다.
-  const drawnQuizzes = useMemo(() => {
-    if (!baseHurdle || !level) return []
-    const pool = baseHurdle.levels[level].quizzes
-    return pickQuizzes(level, baseHurdle.id, pool, 8)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedId, level])
+  const drawnQuizzes = selection?.quizzes || []
 
   // 레벨 미선택 시 레벨 선택 화면만 표시
   if (!level) {
@@ -38,39 +32,33 @@ export default function App() {
 
   const currentLevelLabel = LEVELS.find(lv => lv.id === level)?.label || level
 
-  function handleStart() {
-    const nextId = HURDLES.find(h => !isCleared(h.id))?.id || 1
-    setSelectedId(nextId)
+  function selectHurdle(id) {
+    const hurdle = HURDLES.find(h => h.id === id && isPublished(h.id))
+    if (!hurdle) return
+    setSelection({ id, quizzes: pickQuizzes(level, id, hurdle.levels[level].quizzes, 8) })
     setTimeout(() => detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
+  }
+
+  function handleStart() {
+    const nextId = PUBLISHED_HURDLE_IDS.find(id => !isCleared(id)) ?? PUBLISHED_HURDLE_IDS[0]
+    handleSelect(nextId)
   }
 
   function handleSelect(id) {
-    setSelectedId(id)
-    setTimeout(() => detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50)
+    if (isUnlocked(id)) selectHurdle(id)
   }
 
   function handleClear(id) {
+    if (!isUnlocked(id)) return
     clearHurdle(id)
-    if (id < 10) {
-      setTimeout(() => {
-        setSelectedId(id + 1)
-        detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 800)
-    }
-  }
-
-  function handleReset() {
-    if (window.confirm('모든 진행 상황이 초기화됩니다. 계속하시겠습니까?')) {
-      resetAll()
-      setSelectedId(null)
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
+    const nextId = nextPublished(id)
+    if (nextId !== null) selectHurdle(nextId)
   }
 
   function handleChangeLevel() {
     if (window.confirm('레벨을 변경하시겠습니까? (현재 레벨의 진행 상황은 저장되어 있으니 나중에 같은 레벨을 다시 선택하면 이어서 할 수 있습니다)')) {
       resetLevel()
-      setSelectedId(null)
+      setSelection(null)
     }
   }
 
@@ -104,7 +92,7 @@ export default function App() {
         </button>
       </div>
 
-      <Hero totalCleared={totalCleared} onStart={handleStart} />
+      <Hero totalCleared={totalCleared} totalAvailable={PUBLISHED_HURDLE_IDS.length} onStart={handleStart} />
       <div ref={mapRef}>
         <HurdleMap
           hurdles={HURDLES}
@@ -127,7 +115,13 @@ export default function App() {
           onClear={() => selectedHurdle && handleClear(selectedHurdle.id)}
         />
       </div>
-      {totalCleared === 10 && <CompletionScreen onReset={handleReset} />}
+      {totalCleared === PUBLISHED_HURDLE_IDS.length && (
+        <section role="status" style={{ padding: '2rem 1.5rem', textAlign: 'center' }}>
+          <h2>공개된 허들을 모두 완료했습니다.</h2>
+          <p>허들 01~03을 복습할 수 있습니다. 허들 04~10은 준비 중입니다.</p>
+          <button onClick={() => handleSelect(PUBLISHED_HURDLE_IDS[0])}>허들 01 복습하기</button>
+        </section>
+      )}
     </div>
   )
 }
