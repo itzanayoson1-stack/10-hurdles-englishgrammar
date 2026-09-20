@@ -26,7 +26,7 @@
 .hand {
   font-family: 'Gaegu', sans-serif;
   font-size: 20px;
-  color: #FF4A5A;
+  color: var(--green);
   transform: rotate(-3deg);
   display: inline-block;
 }
@@ -51,25 +51,25 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: #FFFFFF;
-  border: 1.5px solid #E0E0E0;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
   border-radius: 14px;
   padding: 1.3rem 1.2rem;
   text-decoration: none;
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .blogCard:hover {
-  border-color: #FF4A5A;
+  border-color: var(--green);
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(255, 74, 90, 0.12);
+  box-shadow: 0 8px 20px rgba(40, 92, 70, 0.12);
 }
 
 .blogTag {
   align-self: flex-start;
   font-size: 11px;
   font-weight: 700;
-  color: #FF4A5A;
-  background: #FFEAEC;
+  color: var(--green);
+  background: #e5ecdf;
   padding: 3px 9px;
   border-radius: 6px;
 }
@@ -83,7 +83,7 @@
 
 .blogDesc {
   font-size: 13px;
-  color: #888888;
+  color: var(--text3);
   line-height: 1.6;
   flex: 1;
 }
@@ -91,7 +91,7 @@
 .blogArrow {
   font-size: 13px;
   font-weight: 700;
-  color: #FF4A5A;
+  color: var(--green);
 }
 
 /* ---------- 유튜브 카드 ---------- */

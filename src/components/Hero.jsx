@@ -5,10 +5,11 @@ export default function Hero({ totalCleared, totalAvailable, onStart }) {
 
   return (
     <section className={styles.hero}>
-      <div className={styles.glow} />
+      <div className={styles.copy}>
       <span className={styles.tag}>UK TIGER × tenhurdles.com</span>
       <h1 className={styles.title}>
-        Grammar <span className={styles.accent}>10</span> Hurdles
+        <span className={styles.kicker}>GRAMMAR, ONE HURDLE AT A TIME</span>
+        10 hurdles<span className={styles.accent}>.</span>
       </h1>
       <p className={styles.brand}>by UK TIGER 영어코치</p>
       <p className={styles.tagline}>암기가 아니다. 넘어라.</p>
@@ -29,6 +30,13 @@ export default function Hero({ totalCleared, totalAvailable, onStart }) {
       <button className={styles.startBtn} onClick={onStart}>
         {totalCleared === totalAvailable ? '허들 01 복습하기 →' : totalCleared === 0 ? '첫 번째 허들 넘기 →' : '이어서 넘기 →'}
       </button>
+      </div>
+      <div className={styles.tilePanel} aria-hidden="true">
+        <div className={styles.panelTop}><span>UK TIGER</span><span>GRAMMAR / 01—10</span></div>
+        <div className={styles.tileWord}>make<br />it click.</div>
+        <div className={styles.blocks}><span>A</span><span>is</span><span>B.</span></div>
+        <div className={styles.panelBottom}><span>문장이 보이기 시작하는 곳</span><span>↗</span></div>
+      </div>
     </section>
   )
 }

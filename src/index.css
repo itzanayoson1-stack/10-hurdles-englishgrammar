@@ -3,15 +3,17 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* 베이스 (변경 없음 — 화이트 유지) */
-  --bg: #ffffff;
-  --bg-alt: #f7f6f4;
-  --bg-card: #ffffff;
-  --border: #ececec;
+  /* Cream paper, glazed green accents, black typography. */
+  --bg: #f5f2e9;
+  --bg-alt: #ebe8dc;
+  --bg-card: #fffdf7;
+  --border: #d9d9cb;
+  --green: #285c46;
+  --cream: #f5f2e9;
 
   --text: #111111;
   --text2: #3d3d3d;   /* v1.3: #555555 → 더 진하게, 가독성 개선 */
-  --text3: #7a7a7a;   /* v1.3: #999999 → 더 진하게, 가독성 개선 */
+  --text3: #666b60;
 
   /* 브랜드 포인트 (로고 레드는 유지, 기준점 역할) */
   --red: #e5252f;

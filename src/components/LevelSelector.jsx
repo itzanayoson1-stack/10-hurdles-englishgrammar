@@ -5,6 +5,7 @@ export default function LevelSelector({ onSelect }) {
   return (
     <div className={styles.wrap}>
       <p className={styles.eyebrow}>UK TIGER × tenhurdles.com</p>
+      <div className={styles.wordmark}>10 hurdles<span>.</span></div>
       <h1 className={styles.title}>나에게 맞는 난이도는?</h1>
       <p className={styles.desc}>
         선택한 레벨에 맞춰 예문과 문제 난이도가 자동으로 조정됩니다.
