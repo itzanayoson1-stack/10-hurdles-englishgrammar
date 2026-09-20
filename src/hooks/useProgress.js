@@ -1,89 +1,42 @@
 import { useState, useEffect } from 'react'
-
-const LEVEL_KEY = 'g10h_level'
-const stateKey = (level) => `g10h_v1_${level}`
-
-function loadLevel() {
-  try {
-    return localStorage.getItem(LEVEL_KEY) || null
-  } catch (e) {
-    return null
-  }
+import { LEVEL_KEY, loadSession, saveProgress, recordAnswer } from '../utils/progressStore'
+import { canOpen, isPublished } from '../config/release'
+function storage() {
+  try { return window.localStorage } catch { return null }
 }
-
-function loadState(level) {
-  try {
-    const raw = localStorage.getItem(stateKey(level))
-    if (raw) return JSON.parse(raw)
-  } catch (e) {}
-  return { cleared: [], quizAnswers: {} }
-}
-
-function saveState(level, state) {
-  try {
-    localStorage.setItem(stateKey(level), JSON.stringify(state))
-  } catch (e) {}
-}
-
 export function useProgress() {
-  const [level, setLevelRaw] = useState(loadLevel)
-  const [state, setState] = useState(() => (level ? loadState(level) : { cleared: [], quizAnswers: {} }))
-
-  // 레벨이 바뀌면 해당 레벨의 저장된 진행 상황을 불러온다
-  useEffect(() => {
-    if (level) setState(loadState(level))
-  }, [level])
-
-  useEffect(() => {
-    if (level) saveState(level, state)
-  }, [level, state])
-
+  const [session, setSession] = useState(() => loadSession(storage()))
+  const { level, state } = session
+  // Store level and progress atomically to prevent cross-level writes.
+  useEffect(() => { saveProgress(storage(), level, state) }, [level, state])
   function setLevel(newLevel) {
-    try {
-      localStorage.setItem(LEVEL_KEY, newLevel)
-    } catch (e) {}
-    setLevelRaw(newLevel)
+    const next = loadSession(storage(), newLevel)
+    if (!next.level) return
+    saveProgress(storage(), level, state)
+    try { storage()?.setItem(LEVEL_KEY, next.level) } catch { /* Memory-only mode. */ }
+    setSession(next)
   }
-
   function resetLevel() {
-    try {
-      localStorage.removeItem(LEVEL_KEY)
-    } catch (e) {}
-    setLevelRaw(null)
-    setState({ cleared: [], quizAnswers: {} })
+    saveProgress(storage(), level, state)
+    try { storage()?.removeItem(LEVEL_KEY) } catch { /* Memory-only mode. */ }
+    setSession({ level: null, state: { cleared: [], quizAnswers: {} } })
   }
-
-  const isCleared = (id) => state.cleared.includes(id)
-  const isUnlocked = (id) => id === 1 || state.cleared.includes(id - 1)
-  const clearHurdle = (id) => {
-    setState(prev => ({
-      ...prev,
-      cleared: prev.cleared.includes(id) ? prev.cleared : [...prev.cleared, id]
-    }))
+  const isCleared = id => state.cleared.includes(id)
+  const isUnlocked = id => canOpen(id, state.cleared)
+  function clearHurdle(id) {
+    setSession(prev => {
+      if (!canOpen(id, prev.state.cleared)) return prev
+      return { ...prev, state: { ...prev.state,
+        cleared: [...new Set([...prev.state.cleared, id])] } }
+    })
   }
-  const getQuizAnswers = (hurdleId) => state.quizAnswers[hurdleId] || {}
-  const answerQuiz = (hurdleId, qi, answer) => {
-    setState(prev => ({
-      ...prev,
-      quizAnswers: {
-        ...prev.quizAnswers,
-        [hurdleId]: { ...(prev.quizAnswers[hurdleId] || {}), [qi]: answer }
-      }
-    }))
+  const getQuizAnswers = id => state.quizAnswers[id] || {}
+  function answerQuiz(id, key, answer) {
+    setSession(prev => canOpen(id, prev.state.cleared)
+      ? { ...prev, state: recordAnswer(prev.state, id, key, answer) } : prev)
   }
-  const resetAll = () => setState({ cleared: [], quizAnswers: {} })
-
-  return {
-    level,
-    setLevel,
-    resetLevel,
-    cleared: state.cleared,
-    isCleared,
-    isUnlocked,
-    clearHurdle,
-    getQuizAnswers,
-    answerQuiz,
-    resetAll,
-    totalCleared: state.cleared.length
-  }
+  const resetAll = () => setSession(prev => ({ ...prev, state: { cleared: [], quizAnswers: {} } }))
+  return { level, setLevel, resetLevel, isCleared, isUnlocked, clearHurdle,
+    getQuizAnswers, answerQuiz, resetAll,
+    totalCleared: state.cleared.filter(isPublished).length }
 }
