@@ -38,7 +38,7 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--surface-shadow);
   transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1),
               border-color 0.22s ease;
@@ -48,7 +48,7 @@
 .card:hover:not(.locked) {
   transform: translateY(-6px);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
-  border-color: var(--hurdle-accent, var(--border));
+  border-color: #777;
 }
 
 .card[data-hurdle="1"]  { --hurdle-accent: var(--hurdle-1, #FF4A5A); }
@@ -67,7 +67,7 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: color-mix(in srgb, var(--hurdle-accent) 8%, #FAFAFA);
+  background: linear-gradient(145deg, #efefec, #dddedb);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,6 +86,7 @@
   width: 100%;
   padding: 6%;
   object-fit: contain;
+  filter: grayscale(1);
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .card:hover:not(.locked) .thumbImg { transform: scale(1.05); }
@@ -97,7 +98,7 @@
 .lockOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(24, 43, 33, 0.22);
+  background: rgba(20, 20, 20, 0.32);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +126,7 @@
   font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: var(--hurdle-accent, var(--text3));
+  color: var(--text2);
 }
 
 .title {
@@ -154,17 +155,17 @@
 }
 
 .badgeCleared { background: rgba(46, 157, 68, 0.12); color: var(--success, #2E9D44); }
-.badgeActive { background: rgba(229, 37, 47, 0.08); color: var(--red, #E5252F); }
+.badgeActive { background: #e5e5e2; color: var(--text); }
 .badgeLocked { background: var(--bg-alt, #F5F5F5); color: var(--text3, #999999); }
 .badgeOpen { background: var(--bg-alt, #F5F5F5); color: var(--text2, #666666); border: 1px solid var(--border, #E5E5E5); }
 
 .active {
-  border-color: var(--red, #E5252F);
-  box-shadow: 0 0 0 2px rgba(229, 37, 47, 0.12);
+  border-color: #555;
+  box-shadow: 0 0 0 2px #22222218, var(--surface-shadow);
 }
 
 .locked { cursor: not-allowed; }
-.locked:hover { transform: none; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04); }
+.locked:hover { transform: none; box-shadow: var(--surface-shadow); }
 
 .card { padding: 0; font: inherit; text-align: left; min-width: 0; }
 .card:focus-visible { outline: 3px solid var(--text); outline-offset: 4px; }

@@ -51,7 +51,8 @@
   padding: 18px 22px;
   border: 1px solid var(--border);
   border-radius: 14px;
-  background: var(--bg-card);
+  background: linear-gradient(145deg, #fff, #f1f1ee);
+  box-shadow: var(--surface-shadow);
   cursor: pointer;
   text-align: left;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
@@ -60,14 +61,14 @@
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border-color: var(--level-color);
+  border-color: #777;
 }
 
 .bar {
   width: 6px;
   align-self: stretch;
   border-radius: 4px;
-  background: var(--level-color);
+  background: #6b6b69;
   flex-shrink: 0;
 }
 
@@ -79,6 +80,7 @@
 }
 
 .label {
+  filter: grayscale(1);
   font-size: 18px;
   font-weight: 800;
   color: var(--text);
@@ -92,6 +94,6 @@
 
 .arrow {
   font-size: 20px;
-  color: var(--level-color);
+  color: var(--text2);
   font-weight: 700;
 }
