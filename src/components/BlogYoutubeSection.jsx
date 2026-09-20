@@ -1,114 +1,36 @@
 import styles from './BlogYoutubeSection.module.css'
 
-// ================================================================
-// 홈 화면 — 블로그 & 유튜브 섹션
-// 구조는 ncase.me의 "SHTUFF YOU CAN PLAY/READ/WATCH" 카드 그리드를
-// 참고했지만, 비주얼은 tenhurdles의 기존 정체성(화이트+코랄+굵은
-// 산세리프)을 그대로 유지. 손그림 마스코트 대신 작은 손글씨 포인트
-// (라벨 폰트, 동그라미 낙서 SVG)만 절제해서 사용.
-//
-// ⚠️ 제목/설명은 임시 텍스트입니다. 정확한 글 제목으로 교체해 주세요.
-// (Naver 블로그·유튜브 페이지를 직접 읽어올 수 없어 URL만으로 채웠습니다.)
-// ================================================================
-
-const BLOG_POSTS = [
-  {
-    href: 'https://blog.naver.com/cheaperenglish/224315565029',
-    tag: '나의 이야기',
-    title: '[제목 확인 필요] 나의 정체성을 보여주는 글',
-    desc: 'UK Tiger가 어떤 코치인지, 왜 이 길을 걷게 됐는지에 대한 이야기',
-  },
-  {
-    href: 'https://blog.naver.com/cheaperenglish/224319662410',
-    tag: '토익',
-    title: '[제목 확인 필요] 토익 공부법',
-    desc: '효율적으로 점수를 올리는 토익 학습 전략',
-  },
-  {
-    href: 'https://blog.naver.com/cheaperenglish/222292100546',
-    tag: '문법',
-    title: '[제목 확인 필요] 영어 문법 이야기',
-    desc: '문법을 바라보는 관점에 대한 글',
-  },
+// Titles verified against YouTube oEmbed and Naver page metadata.
+const PICKS = [
+  { type: 'video', href: 'https://youtu.be/Q0jDiryJnfQ', id: 'Q0jDiryJnfQ', label: 'WATCH / 01', title: '토익 리스닝, 이 순서로 딱 10세트만 했습니다. (LC 파트 3 & 4 완벽공략법)', action: '유튜브에서 보기 ↗' },
+  { type: 'video', href: 'https://youtu.be/lznfyQZkqHg', id: 'lznfyQZkqHg', label: 'WATCH / 02', title: '분사 하나 이해했을 뿐인데… 영어가 이렇게 보입니다', action: '유튜브에서 보기 ↗' },
+  { type: 'blog', href: 'https://blog.naver.com/cheaperenglish/224315565029', label: 'READ / 01', title: '나는 여전히 짧은 머리가 좋다. (2026년 Ver.)', action: '블로그에서 읽기 ↗', word: 'perspective.' },
+  { type: 'blog', href: 'https://blog.naver.com/cheaperenglish/224319662410', label: 'READ / 02', title: '영어 독해를 잘 하는 사람들의 공통점 (토익 900점 이후 알게 된 사실)', action: '블로그에서 읽기 ↗', word: 'practice.' },
 ]
-
-const YT_VIDEOS = [
-  {
-    href: 'https://youtu.be/Q0jDiryJnfQ',
-    id: 'Q0jDiryJnfQ',
-    tag: '대표 영상',
-    title: '[제목 확인 필요] 토익 LC 공부법',
-  },
-  {
-    href: 'https://youtu.be/lznfyQZkqHg',
-    id: 'lznfyQZkqHg',
-    tag: '문법 영상',
-    title: '[제목 확인 필요] 영어 문법 — 분사',
-  },
-]
-
-function DoodleCircle() {
-  // 손글씨풍 동그라미 낙서 — 섹션 라벨 강조용, 절제된 사용
-  return (
-    <svg className={styles.doodle} viewBox="0 0 120 40" aria-hidden="true">
-      <path
-        d="M8 22 C 4 10, 30 3, 60 4 C 95 5, 116 12, 112 22 C 108 34, 70 38, 40 36 C 15 34, 4 30, 8 22 Z"
-        fill="none"
-        stroke="#FF4A5A"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
-}
 
 export default function BlogYoutubeSection() {
   return (
-    <div className={styles.wrap}>
-      {/* ---------- 블로그 ---------- */}
-      <section className={styles.section}>
-        <div className={styles.labelRow}>
-          <span className={styles.hand}>코치의 기록</span>
-          <h2 className={styles.title}>블로그</h2>
-        </div>
-
-        <div className={styles.blogGrid}>
-          {BLOG_POSTS.map(p => (
-            <a key={p.href} href={p.href} target="_blank" rel="noopener noreferrer" className={styles.blogCard}>
-              <span className={styles.blogTag}>{p.tag}</span>
-              <div className={styles.blogTitle}>{p.title}</div>
-              <div className={styles.blogDesc}>{p.desc}</div>
-              <span className={styles.blogArrow}>더 읽기 →</span>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      {/* ---------- 유튜브 ---------- */}
-      <section className={styles.section}>
-        <div className={styles.labelRow}>
-          <DoodleCircle />
-          <h2 className={styles.title}>유튜브</h2>
-        </div>
-
-        <div className={styles.ytGrid}>
-          {YT_VIDEOS.map(v => (
-            <a key={v.href} href={v.href} target="_blank" rel="noopener noreferrer" className={styles.ytCard}>
-              <div className={styles.ytThumbWrap}>
-                <img
-                  className={styles.ytThumb}
-                  src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
-                  alt={v.title}
-                  loading="lazy"
-                />
-                <span className={styles.ytPlay}>▶</span>
+    <section className={styles.wrap} aria-labelledby="featured-heading">
+      <div className={styles.heading}>
+        <div><span className={styles.eyebrow}>UK TIGER PICKS</span><h2 id="featured-heading">영상으로 보고, 글로 만나요.</h2></div>
+        <p>추천 영상 2편 · 블로그 2편</p>
+      </div>
+      <div className={styles.grid}>
+        {PICKS.map(p => (
+          <a key={p.href} href={p.href} target="_blank" rel="noopener noreferrer" className={styles.card} aria-label={p.title + ' — 새 탭에서 열기'}>
+            {p.type === 'video' ? (
+              <div className={styles.media}>
+                <img src={`https://i.ytimg.com/vi/${p.id}/hqdefault.jpg`} alt="" loading="lazy" width="480" height="360" />
+                <span className={styles.play} aria-hidden="true">▶</span>
+                <span className={styles.platform}>YOUTUBE</span>
               </div>
-              <span className={styles.ytTag}>{v.tag}</span>
-              <div className={styles.ytTitle}>{v.title}</div>
-            </a>
-          ))}
-        </div>
-      </section>
-    </div>
+            ) : (
+              <div className={styles.paper} aria-hidden="true"><span>the coach’s notes</span><strong>{p.word}</strong><span className={styles.noteArrow}>↗</span></div>
+            )}
+            <div className={styles.body}><span className={styles.label}>{p.label}</span><h3>{p.title}</h3><span className={styles.action}>{p.action}</span></div>
+          </a>
+        ))}
+      </div>
+    </section>
   )
 }

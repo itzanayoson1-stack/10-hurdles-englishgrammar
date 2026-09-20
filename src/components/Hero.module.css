@@ -1,12 +1,12 @@
-.hero { max-width: 1280px; margin: auto; padding: 64px 32px 72px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.hero { max-width: 1280px; margin: auto; padding: 32px 32px 36px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
 .copy { min-width: 0; }
-.tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--green); margin-bottom: 32px; }
+.tag { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .1em; color: var(--green); margin-bottom: 18px; }
 .title { font-family: 'Arial Black', 'Pretendard', sans-serif; font-size: clamp(48px, 5.6vw, 78px); font-weight: 900; line-height: 1.06; letter-spacing: -.065em; color: var(--black); }
 .kicker { display: block; font-family: 'Pretendard', sans-serif; font-size: 10px; line-height: 1.6; letter-spacing: .16em; margin-bottom: 12px; color: var(--text2); }
 .accent { color: var(--green); }
-.brand { font-size: 12px; color: var(--text3); margin: 16px 0 28px; }
+.brand { font-size: 12px; color: var(--text3); margin: 12px 0 18px; }
 .tagline { font-size: clamp(22px, 2.3vw, 29px); font-weight: 800; letter-spacing: -.045em; margin-bottom: 16px; }
-.desc { font-size: 14px; color: var(--text2); line-height: 1.9; margin-bottom: 30px; }
+.desc { font-size: 14px; color: var(--text2); line-height: 1.9; margin-bottom: 18px; }
 .progressWrap { max-width: 400px; margin-bottom: 24px; }
 .progressLabel { display: flex; justify-content: space-between; font-size: 12px; color: var(--text2); margin-bottom: 10px; }
 .progressBg { height: 6px; background: #dddcd1; border-radius: 4px; overflow: hidden; }
@@ -14,10 +14,10 @@
 .startBtn { background: var(--black); color: var(--cream); font-weight: 800; font-size: 14px; padding: 16px 26px; border: 0; border-radius: 8px; transition: background .2s; }
 .startBtn:hover { background: var(--green); }
 .startBtn:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
-.tilePanel { min-width: 0; aspect-ratio: 1 / 1.08; border-radius: 72px 16px 16px 16px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; background-color: #629480; background-image: linear-gradient(135deg, #ffffff24, transparent 48%, #153d2d22), linear-gradient(#e7eed357 1px, transparent 1px), linear-gradient(90deg, #e7eed357 1px, transparent 1px); background-size: 100% 100%, 28px 28px, 28px 28px; border: 1px solid #547d68; box-shadow: inset 0 1px 0 #e6efce66, 0 14px 0 -8px #dcded0; }
+.tilePanel { min-width: 0; aspect-ratio: 1.25; border-radius: 72px 16px 16px 16px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; background-color: #629480; background-image: linear-gradient(135deg, #ffffff24, transparent 48%, #153d2d22), linear-gradient(#e7eed357 1px, transparent 1px), linear-gradient(90deg, #e7eed357 1px, transparent 1px); background-size: 100% 100%, 28px 28px, 28px 28px; border: 1px solid #547d68; box-shadow: inset 0 1px 0 #e6efce66, 0 14px 0 -8px #dcded0; }
 .panelTop, .panelBottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 10px; font-weight: 800; letter-spacing: .07em; color: #14271e; }
 .panelTop { padding-left: 24px; }
-.tileWord { font-family: 'Arial Black', 'Pretendard', sans-serif; font-size: clamp(64px, 7.4vw, 104px); font-weight: 900; letter-spacing: -.075em; line-height: .95; color: #151c17; text-shadow: 0 2px 0 #ffffff25; margin: 28px 0; }
+.tileWord { font-family: 'Arial Black', 'Pretendard', sans-serif; font-size: clamp(58px, 6vw, 82px); font-weight: 900; letter-spacing: -.075em; line-height: .95; color: #151c17; text-shadow: 0 2px 0 #ffffff25; margin: 28px 0; }
 .blocks { display: flex; gap: 10px; align-items: center; margin-bottom: 24px; }
 .blocks span { width: 68px; height: 64px; display: grid; place-items: center; font-size: 29px; font-weight: 900; border: 1px solid #273b2b; border-radius: 7px; box-shadow: 3px 4px 0 #23382c; background: #f0eddc; color: #17241c; }
 .blocks span:nth-child(2) { background: #e2bb74; transform: rotate(-6deg); }

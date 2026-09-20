@@ -93,6 +93,7 @@ export default function App() {
       </div>
 
       <Hero totalCleared={totalCleared} totalAvailable={PUBLISHED_HURDLE_IDS.length} onStart={handleStart} />
+      <BlogYoutubeSection />
       <div ref={mapRef}>
         <HurdleMap
           hurdles={HURDLES}
@@ -102,9 +103,6 @@ export default function App() {
           onSelect={handleSelect}
         />
       </div>
-
-      {/* 허들 그리드 바로 아래: 블로그(읽을거리) → 유튜브(볼거리) 순서 */}
-      <BlogYoutubeSection />
 
       <div ref={detailRef}>
         <HurdleDetail
