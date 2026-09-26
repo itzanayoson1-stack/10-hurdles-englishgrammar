@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import QuizBox from './QuizBox'
+import GateDash from './GateDash'
+import { quizKey } from '../utils/progressStore'
 import Hurdle01Intro from './Hurdle01Intro'
 import SentenceAxis from './SentenceAxis'
 import VerbEngine from './VerbEngine'
@@ -27,6 +30,26 @@ function renderRichText(text, keyPrefix) {
     }
     return part
   })
+}
+
+function PracticeArea({ hurdle, isCleared, quizAnswers, onAnswer, onClear }) {
+  const [mode, setMode] = useState('game')
+
+  return (
+    <section className={styles.practice} aria-label="허들 연습">
+      <h3 className={styles.practiceTitle}>문장을 넘는 연습</h3>
+      <p className={styles.practiceIntro}>움직이는 문에서 답을 고르세요. 문을 고르는 즉시 결과가 나옵니다.</p>
+      <div className={styles.modeSwitch} role="group" aria-label="연습 방식 선택">
+        <button type="button" aria-pressed={mode === 'game'} className={mode === 'game' ? styles.activeMode : ''} onClick={() => setMode('game')}>게임으로 연습</button>
+        <button type="button" aria-pressed={mode === 'quiz'} className={mode === 'quiz' ? styles.activeMode : ''} onClick={() => setMode('quiz')}>기존 퀴즈 · 허들 완료</button>
+      </div>
+      {mode === 'game' ? (
+        <GateDash quizzes={hurdle.quizzes} onTryQuiz={() => setMode('quiz')} />
+      ) : (
+        <QuizBox hurdle={hurdle} answers={quizAnswers} onAnswer={onAnswer} onClear={onClear} isCleared={isCleared} />
+      )}
+    </section>
+  )
 }
 
 export default function HurdleDetail({ hurdle, isCleared, quizAnswers, onAnswer, onClear }) {
@@ -71,9 +94,9 @@ export default function HurdleDetail({ hurdle, isCleared, quizAnswers, onAnswer,
         <div className={styles.sectionLabel}>핵심 요약</div>
         <div className={styles.summary}>{hurdle.summary}</div>
 
-        <QuizBox
+        <PracticeArea key={`${hurdle.id}:${hurdle.quizzes.map(quizKey).join('|')}`}
           hurdle={hurdle}
-          answers={quizAnswers}
+          quizAnswers={quizAnswers}
           onAnswer={onAnswer}
           onClear={onClear}
           isCleared={isCleared}

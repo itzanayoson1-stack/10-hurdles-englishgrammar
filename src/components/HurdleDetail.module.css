@@ -109,3 +109,11 @@
   color: var(--text2);
   line-height: 1.75;
 }
+
+.practice { margin-top: 2.4rem; }
+.practiceTitle { margin: 0 0 .5rem; font-size: 19px; color: var(--text); }
+.practiceIntro { margin: 0 0 1rem; color: var(--text2); font-size: 14px; line-height: 1.5; }
+.modeSwitch { display: flex; gap: 8px; margin-bottom: 1.25rem; }
+.modeSwitch button { flex: 1; min-height: 44px; padding: 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-alt); color: var(--text2); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.modeSwitch .activeMode { border-color: var(--text); background: var(--text); color: var(--bg); }
+.modeSwitch button:focus-visible { outline: 3px solid #477b61; outline-offset: 2px; }
