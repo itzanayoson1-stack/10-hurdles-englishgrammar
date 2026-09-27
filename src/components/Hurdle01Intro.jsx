@@ -81,22 +81,22 @@ export default function Hurdle01Intro() {
         <div className={styles.card}>
           <span className={styles.caption}>A를 설명한다</span>
           <p className={styles.sentence}>
-            <span ref={el => { roleRefs.current[0] = el }}>The plan</span>{' '}
+            <span ref={el => { roleRefs.current[0] = el }}>The door</span>{' '}
             <span ref={el => { roleRefs.current[1] = el }}>is</span>{' '}
-            <span ref={el => { roleRefs.current[2] = el }}>ready.</span>
+            <span ref={el => { roleRefs.current[2] = el }}>open.</span>
           </p>
-          <p className={styles.meaning}>그 계획은 준비되어 있다.</p>
+          <p className={styles.meaning}>문이 열려 있다.</p>
           <p className={styles.note}><strong>A</strong> — <strong>is</strong> — A의 모습</p>
         </div>
         <div className={styles.card}>
           <span className={styles.caption}>행위가 대상으로 이어진다</span>
           <p className={styles.sentence}>
-            <span ref={el => { roleRefs.current[3] = el }}>The team</span>{' '}
-            <span ref={el => { roleRefs.current[4] = el }}>reviews</span>{' '}
-            <span ref={el => { roleRefs.current[5] = el }}>the plan.</span>
+            <span ref={el => { roleRefs.current[3] = el }}>The guard</span>{' '}
+            <span ref={el => { roleRefs.current[4] = el }}>opens</span>{' '}
+            <span ref={el => { roleRefs.current[5] = el }}>the door.</span>
           </p>
-          <p className={styles.meaning}>그 팀은 계획을 검토한다.</p>
-          <p className={styles.note}><strong>A</strong> — <strong>reviews</strong> — 검토하는 대상</p>
+          <p className={styles.meaning}>경비원이 문을 연다.</p>
+          <p className={styles.note}><strong>A</strong> — <strong>opens</strong> — 여는 대상</p>
         </div>
       </div>
 

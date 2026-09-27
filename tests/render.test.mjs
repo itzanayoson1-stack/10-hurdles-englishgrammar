@@ -28,3 +28,20 @@ test('rendered cards, completion text and answers respect phase-one scope', asyn
     assert.ok(quiz.includes('공개된 허들을 모두 완료'))
   } finally { await server.close() }
 })
+
+test('hurdle one shows a short explanation with the full lesson in a dialog', async () => {
+  const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' })
+  try {
+    const { default: Detail } = await server.ssrLoadModule('/src/components/HurdleDetail.jsx')
+    const h = HURDLES[0]
+    const html = renderToStaticMarkup(React.createElement(Detail, {
+      hurdle: { ...h, examples: h.levels.ms.examples, summary: h.levels.ms.summary, quizzes: h.levels.ms.quizzes },
+      isCleared: false, quizAnswers: {}, onAnswer: () => {}, onClear: () => {},
+    }))
+    assert.ok(html.includes('A를 잡고, 가운데 동사를 보세요'))
+    assert.ok(html.includes('설명 전체 보기'))
+    assert.ok(html.includes('aria-labelledby="hurdle-one-theory-title"'))
+    assert.ok(html.includes('The door at the end of the hall'))
+    assert.ok(html.includes('The guard opens the door'))
+  } finally { await server.close() }
+})
