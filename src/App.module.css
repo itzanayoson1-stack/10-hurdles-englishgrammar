@@ -1,0 +1,23 @@
+.navigation, .footerNavigation {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.navigation { border-bottom: 1px solid var(--border); }
+.footerNavigation { border-top: 1px solid var(--border); padding-bottom: 48px; }
+.navigation span { color: var(--text3); font-size: 11px; letter-spacing: .12em; font-weight: 700; }
+.navigation button, .footerNavigation button {
+  border: 0;
+  background: none;
+  color: var(--text);
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+.navigation button:hover, .footerNavigation button:hover { text-decoration: underline; }
+.navigation button:focus-visible, .footerNavigation button:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
