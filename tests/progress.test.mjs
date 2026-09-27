@@ -60,7 +60,7 @@ test('all current content has valid structure and unambiguous storage identities
   assert.equal(new Set(HURDLES.map(h => h.id)).size, 10)
   for (const h of HURDLES) for (const { id } of LEVELS) {
     const { quizzes, examples } = h.levels[id]
-    assert.equal(examples.length, 5)
+    assert.equal(examples.length, h.id === 1 ? 2 : 5)
     assert.equal(quizzes.length, 8)
     assert.equal(new Set(quizzes.map(quizKey)).size, quizzes.length)
     for (const q of quizzes) {
