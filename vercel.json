@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/hurdles/:id", "destination": "/index.html" }
+  ]
+}
