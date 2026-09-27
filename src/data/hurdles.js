@@ -15,11 +15,8 @@ export const HURDLES = [
     levels: {
       ms: {
         examples: [
-          { en: "I am a middle school student.", ko: "나는 중학생이다. → BE 동사" },
-          { en: "She is kind.", ko: "그녀는 친절하다. → BE 동사" },
-          { en: "He plays basketball every day.", ko: "그는 매일 농구를 한다. → DO 동사" },
-          { en: "My sister draws pictures every weekend.", ko: "내 여동생은 주말마다 그림을 그린다. → DO 동사" },
-          { en: "The weather is cold today.", ko: "오늘 날씨는 춥다. → BE 동사" },
+          { en: "The classroom is quiet.", ko: "교실은 조용하다. → BE 동사로 교실의 모습을 말한다." },
+          { en: "The students clean the classroom.", ko: "학생들은 교실을 청소한다. → clean이 하는 일을 나타낸다." },
         ],
         summary: "BE 동사 = ~이다 | DO 동사 = ~하다. 중학교 영어의 첫걸음은 이 둘을 구분하는 것이다.",
         quizzes: [
@@ -35,11 +32,8 @@ export const HURDLES = [
       },
       csat: {
         examples: [
-          { en: "The hypothesis remains unproven.", ko: "그 가설은 아직 증명되지 않은 상태다. → BE 동사" },
-          { en: "The committee reviews each application thoroughly.", ko: "위원회는 각 지원서를 꼼꼼히 검토한다. → DO 동사" },
-          { en: "Renewable energy is becoming increasingly important.", ko: "재생에너지는 점점 더 중요해지고 있다. → BE 동사" },
-          { en: "The results indicate a strong correlation.", ko: "그 결과는 강한 상관관계를 보여준다. → DO 동사" },
-          { en: "The theory is widely accepted among scholars.", ko: "그 이론은 학자들 사이에서 널리 받아들여진 상태다. → BE 동사" },
+          { en: "The proposal is clear.", ko: "그 제안은 명확하다. → BE 동사로 제안을 설명한다." },
+          { en: "The committee reviews the proposal.", ko: "위원회는 그 제안을 검토한다. → reviews가 하는 일을 나타낸다." },
         ],
         summary: "수능 지문은 추상적 주어(이론, 현상, 정책)에 BE/DO 동사가 결합된 문장이 많다. 동사 종류를 먼저 구분하면 지문의 논리 구조가 보인다.",
         quizzes: [
@@ -55,11 +49,8 @@ export const HURDLES = [
       },
       toeic: {
         examples: [
-          { en: "The proposal is subject to approval by the board.", ko: "그 제안은 이사회 승인을 받아야 한다. → BE 동사" },
-          { en: "The department handles all customer inquiries.", ko: "그 부서는 모든 고객 문의를 처리한다. → DO 동사" },
-          { en: "The meeting is scheduled for 3 PM.", ko: "회의는 오후 3시로 예정되어 있다. → BE 동사" },
-          { en: "The supplier ships orders within 48 hours.", ko: "그 공급업체는 48시간 이내에 주문을 배송한다. → DO 동사" },
-          { en: "The warranty is valid for one year.", ko: "그 보증은 1년간 유효하다. → BE 동사" },
+          { en: "The proposal is ready for review.", ko: "그 제안은 검토할 준비가 되어 있다. → BE 동사로 제안의 상태를 말한다." },
+          { en: "The board reviews the proposal.", ko: "이사회는 그 제안을 검토한다. → reviews가 하는 일을 나타낸다." },
         ],
         summary: "토익 Part 5·6에서는 빈칸에 BE 동사(is/are/was)와 DO 동사(do/does/has) 중 무엇이 와야 하는지 묻는 문제가 자주 나온다. 문맥이 '상태'인지 '행동'인지 먼저 판단하라.",
         quizzes: [
@@ -75,11 +66,8 @@ export const HURDLES = [
       },
       abroad: {
         examples: [
-          { en: "Applicants are expected to demonstrate independent research capability.", ko: "지원자는 독립적 연구 능력을 입증할 것으로 기대된다. → BE 동사" },
-          { en: "The faculty evaluates each thesis based on originality.", ko: "교수진은 독창성을 기준으로 각 논문을 평가한다. → DO 동사" },
-          { en: "Academic integrity is taken seriously at this institution.", ko: "이 기관에서는 학문적 진실성을 중요하게 여긴다. → BE 동사" },
-          { en: "The dissertation contributes new insights to the field.", ko: "그 논문은 그 분야에 새로운 통찰을 제공한다. → DO 동사" },
-          { en: "The findings are consistent with previous studies.", ko: "그 연구 결과는 선행 연구와 일치하는 상태다. → BE 동사" },
+          { en: "The research plan is sound.", ko: "그 연구 계획은 타당하다. → BE 동사로 계획을 평가한다." },
+          { en: "The faculty evaluates the research plan.", ko: "교수진은 그 연구 계획을 평가한다. → evaluates가 하는 일을 나타낸다." },
         ],
         summary: "유학 지원서와 학술 문서는 'be expected to', 'is required' 같은 BE 동사 수동 구문이 많다. 동사가 상태(BE)인지 행위(DO)인지 구분하면 문서의 논조를 정확히 읽을 수 있다.",
         quizzes: [

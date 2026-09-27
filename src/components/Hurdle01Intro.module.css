@@ -1,88 +1,33 @@
-/* ================================================================
-   Hurdle 01 인트로 — v7 미니멀 고대비
-   딥 레드 #FF4A5A · 마린 블루 #3FE0D0 · 오프블랙 #111111
-   유색 블록 내부 글자: 순백 볼드 반전 (Strict)
-   ================================================================ */
-
 .wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin: 1.2rem 0 2rem;
+  margin: 1.4rem 0 2.3rem;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
 }
-
-.headRow { display: flex; justify-content: flex-end; }
-
-.replay {
-  font-size: 13px;
-  padding: 7px 13px;
-  border-radius: 8px;
-  border: 1px solid #d0d0d0;
-  background: #fff;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-/* ---------- 좌우 대비: FORGET(레드) / REMEMBER(블루) ---------- */
-.stage {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  min-height: 130px;
-}
-
-.card {
-  border-radius: 16px;
-  padding: 1.4rem 1.3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
-}
-.eyebrow { font-size: 11px; letter-spacing: 0.14em; font-weight: 800; color: rgba(255,255,255,0.75); }
-.big { font-size: 22px; font-weight: 800; color: #FFFFFF; line-height: 1.25; }
-
-.discard {
-  background: #FF4A5A;
-  transition: opacity 1s ease, transform 1s ease;
-}
-.discard.gone {
-  opacity: 0;
-  transform: translateX(-70px) scale(0.8);
-  pointer-events: none;
-}
-
-.keep {
-  background: #3FE0D0;
-  transition: transform 1s ease;
-}
-.keep.center { transform: translateX(-52%) scale(1.12); }
-
-/* ---------- 상하 대비: A is B(레드) / A do B(블루) ---------- */
-.formulas {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
-.formulas.shown { opacity: 1; transform: translateY(0); }
-
-.formula {
-  border-radius: 16px;
-  padding: 1.15rem 1.3rem;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 14px;
-}
-.fMain { font-size: 24px; font-weight: 800; color: #FFFFFF; }
-.fSub { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.85); }
-.fIs { background: #FF4A5A; }
-.fDo { background: #3FE0D0; }
-
-@media (max-width: 520px) {
+.head { display: flex; align-items: start; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.head h3 { font-size: 17px; line-height: 1.4; margin-top: 5px; }
+.kicker { color: var(--text3); font-size: 11px; font-weight: 700; letter-spacing: .06em; }
+.replay { flex: none; border: 1px solid var(--border); background: var(--bg); border-radius: 6px; padding: 7px 9px; color: var(--text2); font-size: 12px; }
+.stage { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+.card { padding: 16px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); min-width: 0; }
+.caption { font-size: 12px; color: var(--text2); font-weight: 700; }
+.sentence { font-size: clamp(16px, 2vw, 19px); font-weight: 700; color: var(--text); line-height: 1.5; margin: 17px 0 7px; white-space: nowrap; }
+.sentence span { display: inline-block; }
+.meaning { font-size: 12px; color: var(--text3); min-height: 2.8em; }
+.note { border-top: 1px solid var(--border); padding-top: 10px; margin-top: 12px; font-size: 12px; color: var(--text2); }
+.note strong { color: var(--text); }
+.tryArea { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border); }
+.question { font-size: 14px; font-weight: 700; margin: 4px 0 12px; }
+.choices { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.choices button { background: var(--bg); border: 1px solid var(--border); border-radius: 5px; min-height: 42px; padding: 7px 10px; color: var(--text); font: inherit; font-size: 15px; }
+.choices button:hover, .choices .chosen { border-color: var(--text); }
+.choices button:focus-visible, .replay:focus-visible { outline: 2px solid #176476; outline-offset: 2px; }
+.feedback { min-height: 2em; margin-top: 11px; color: var(--text2); font-size: 12px; }
+.scope { font-size: 12px; color: var(--text3); line-height: 1.6; margin-top: 12px; }
+@media (max-width: 620px) {
+  .head { flex-direction: column; }
   .stage { grid-template-columns: 1fr; }
-  .keep.center { transform: scale(1.05); }
+  .meaning { min-height: 0; }
+  .sentence { white-space: normal; }
 }
