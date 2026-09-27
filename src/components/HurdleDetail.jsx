@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import QuizBox from './QuizBox'
 import GateDash from './GateDash'
 import { quizKey } from '../utils/progressStore'
@@ -30,6 +30,47 @@ function renderRichText(text, keyPrefix) {
     }
     return part
   })
+}
+
+function MoreTheory({ details }) {
+  const dialogRef = useRef(null)
+  const triggerRef = useRef(null)
+
+  return (
+    <>
+      <button type="button" ref={triggerRef} className={styles.moreTheory}
+        onClick={() => dialogRef.current?.showModal()}>
+        설명 전체 보기 <span aria-hidden="true">↗</span>
+      </button>
+      <dialog ref={dialogRef} className={styles.theoryDialog}
+        aria-labelledby="hurdle-one-theory-title"
+        onClose={() => triggerRef.current?.focus()}
+        onClick={event => {
+          if (event.target === event.currentTarget) event.currentTarget.close()
+        }}>
+        <div className={styles.dialogContent}>
+          <div className={styles.dialogHeader}>
+            <div>
+              <div className={styles.eyebrow}>HURDLE 01 · 더 깊이 보기</div>
+              <h3 id="hurdle-one-theory-title">두 갈래로 문장을 읽는 법</h3>
+            </div>
+            <button type="button" className={styles.dialogClose}
+              onClick={() => dialogRef.current?.close()} aria-label="설명 창 닫기">✕</button>
+          </div>
+          {details.map((section, i) => (
+            <section className={styles.dialogSection} key={section.title}>
+              <h4>{section.title}</h4>
+              {section.text.split('\n\n').map((para, j) => (
+                <p key={j}>{renderRichText(para, `detail-${i}-${j}`)}</p>
+              ))}
+            </section>
+          ))}
+          <button type="button" className={styles.dialogDone}
+            onClick={() => dialogRef.current?.close()}>문장으로 돌아가기</button>
+        </div>
+      </dialog>
+    </>
+  )
 }
 
 function PracticeArea({ hurdle, isCleared, quizAnswers, onAnswer, onClear }) {
@@ -68,7 +109,7 @@ export default function HurdleDetail({ hurdle, isCleared, quizAnswers, onAnswer,
         <h2 className={styles.title}>{hurdle.title}</h2>
         <p className={styles.core}>{hurdle.core}</p>
 
-        {/* 허들별 인터랙티브 컴포넌트: 01=FORGET/REMEMBER, 02=문장의 축, 03=동사=엔진, 04=점·선·면, 05=형용사 대통합, 06=부사 구슬 */}
+        {/* 허들별 인터랙티브 컴포넌트: 01=문장 대비, 02=문장의 축, 03=동사=엔진, 04=점·선·면, 05=형용사 대통합, 06=부사 구슬 */}
         {hurdle.id === 1 && <Hurdle01Intro key={hurdle.id} />}
         {hurdle.id === 2 && <SentenceAxis key={hurdle.id} />}
         {hurdle.id === 3 && <VerbEngine key={hurdle.id} />}
@@ -80,6 +121,7 @@ export default function HurdleDetail({ hurdle, isCleared, quizAnswers, onAnswer,
         {hurdle.body.split('\n\n').map((para, i) => (
           <p key={i} className={styles.body}>{renderRichText(para, `body-${i}`)}</p>
         ))}
+        {hurdle.details && <MoreTheory details={hurdle.details} />}
 
         <div className={styles.sectionLabel}>예문</div>
         <ul className={styles.examples}>

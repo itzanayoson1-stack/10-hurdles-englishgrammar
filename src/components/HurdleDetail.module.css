@@ -55,7 +55,44 @@
   font-size: 15.4px;
   color: var(--text2);
   line-height: 1.85;
+  margin-bottom: .55rem;
 }
+
+.moreTheory {
+  margin-top: .7rem;
+  padding: 10px 14px;
+  border: 1px solid var(--text);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+.moreTheory:hover { background: var(--bg-alt); }
+.moreTheory:focus-visible, .dialogClose:focus-visible, .dialogDone:focus-visible {
+  outline: 2px solid #176476;
+  outline-offset: 3px;
+}
+.theoryDialog {
+  width: min(620px, calc(100vw - 32px));
+  max-height: min(82vh, 760px);
+  margin: auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--text);
+  box-shadow: 0 24px 80px #0004;
+  overflow-y: auto;
+}
+.theoryDialog::backdrop { background: #10171ab3; }
+.dialogContent { padding: clamp(20px, 4vw, 34px); }
+.dialogHeader { display: flex; justify-content: space-between; align-items: start; gap: 16px; }
+.dialogHeader h3 { font-size: 21px; line-height: 1.4; }
+.dialogClose { flex: none; border: 0; background: none; font-size: 18px; padding: 4px; color: var(--text); }
+.dialogSection { margin-top: 24px; }
+.dialogSection h4 { font-size: 15px; margin-bottom: 7px; }
+.dialogSection p { font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 9px; }
+.dialogDone { margin-top: 22px; padding: 10px 14px; border: 1px solid var(--text); border-radius: 6px; background: var(--text); color: var(--bg); font-size: 13px; font-weight: 700; }
 
 .bold {
   font-weight: 700;

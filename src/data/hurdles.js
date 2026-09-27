@@ -10,15 +10,20 @@ export const HURDLES = [
     id: 1,
     title: "이제 5형식 잊자. 문장은 딱 두 종류다.",
     sub: "~이다 vs ~하다",
-    core: "영어 문장은 결국 BE 동사와 DO 동사, 두 종류에서 시작된다.",
-    body: "영문법 책을 펴면 1형식부터 5형식까지 쏟아집니다. 하지만 한국말로 생각해보면 단순합니다. 문장은 딱 두 종류입니다. 상태나 존재를 말하는 문장(~이다)과 동작이나 행위를 말하는 문장(~하다). 영어도 똑같습니다.\n\n**A is B** (A는 B이다) 또는 **A do B** (A가 B를 하다).\n\n'이렇게 단순하다고요? 제가 보는 영어 문장은 이렇게 심플하지 않던데요?'라고 생각하실 수 있습니다. **이해합니다.**\n\n영어 문장이 길어지는 이유는 바로 이 ==A와 B==가 길어지기 때문입니다.\n\n예를 들어 '대한민국(A)은 위대한 나라(B)이다'라는 기본 문장에 수식어가 붙으면 이렇게 됩니다: '오늘날 인구 5천만의 대한민국(A)은 지난 반세기 동안 눈부신 성장을 이뤄낸 나라(B)이다.' (Today, South Korea(A), with a population of 50 million, is a nation(B) that has achieved remarkable growth over the past half-century.) A 자리에는 {{형용사구}}('{{인구 5천만의}}' / 'with a population of 50 million')가, B 자리에는 ((형용사절))('((지난 반세기 동안 눈부신 성장을 이뤄낸))' / 'that has achieved remarkable growth over the past half-century')이 들어와 문장이 길어진 것입니다. 자리는 그대로인데, 그 자리를 채우는 내용물이 커진 것뿐입니다.",
+    core: "문장을 읽는 첫 지도: A is B / A do B.",
+    body: "**A를 잡고, 가운데 동사를 보세요.**\n\n**A is B**는 A를 뒤의 설명에 잇습니다. **A do B**는 A가 하는 일을 보여줍니다.\n\n문장이 길어져도 먼저 이 중심부터 읽으면 됩니다.",
+    details: [
+      { title: "같은 open, 다른 문장", text: "**The door is open.** 문이 어떤 상태인지 말합니다. is가 문(The door)과 열린 모습(open)을 잇습니다.\n\n**The guard opens the door.** 이번에는 경비원(The guard)이 문을 여는 일이 일어납니다. 가운데 동사는 opens이고, 그 일이 닿는 대상은 the door입니다." },
+      { title: "A와 B는 길어질 수 있습니다", text: "**The door is open.** → **The door at the end of the hall is wide open.**\n\nA는 The door에서 The door at the end of the hall로 커졌습니다. 뒤의 설명도 open에서 wide open으로 늘었습니다. 하지만 둘을 이어주는 is는 그대로 보입니다. 긴 문장을 읽을 때는 꾸미는 말에 들어가기 전에 A와 가운데 동사를 찾으세요." },
+      { title: "이 지도를 쓸 수 있는 곳", text: "BE / DO는 문장의 출발점을 잡는 학습용 지도입니다. 여기서 DO는 실제 단어 do만을 뜻하지 않고 opens 같은 일반동사를 가리킵니다. **The guard runs.**처럼 행위 뒤에 대상(B)이 없는 문장도 있습니다.\n\n또 **She knows the answer.**는 be 동사가 아니지만 뜻은 상태에 가깝습니다. 따라서 BE=모든 상태, DO=모든 동작이라는 법칙으로 외우기보다, 먼저 실제 동사를 보고 문장의 관계를 읽으세요." },
+    ],
     levels: {
       ms: {
         examples: [
           { en: "The classroom is quiet.", ko: "교실은 조용하다. → BE 동사로 교실의 모습을 말한다." },
           { en: "The students clean the classroom.", ko: "학생들은 교실을 청소한다. → clean이 하는 일을 나타낸다." },
         ],
-        summary: "BE 동사 = ~이다 | DO 동사 = ~하다. 중학교 영어의 첫걸음은 이 둘을 구분하는 것이다.",
+        summary: "먼저 A와 동사를 찾으세요. is는 A를 설명에 잇고, clean은 A가 하는 일을 보여줍니다.",
         quizzes: [
           { q: "다음 중 BE 동사 문장은?", opts: ["I am happy.", "I run fast.", "I like pizza."], answer: 0, exp: "am은 BE 동사. 상태를 나타낸다." },
           { q: "다음 중 DO 동사 문장은?", opts: ["They are students.", "She reads books.", "It is cold."], answer: 1, exp: "reads는 DO 동사. 행동을 나타낸다." },
@@ -35,7 +40,7 @@ export const HURDLES = [
           { en: "The proposal is clear.", ko: "그 제안은 명확하다. → BE 동사로 제안을 설명한다." },
           { en: "The committee reviews the proposal.", ko: "위원회는 그 제안을 검토한다. → reviews가 하는 일을 나타낸다." },
         ],
-        summary: "수능 지문은 추상적 주어(이론, 현상, 정책)에 BE/DO 동사가 결합된 문장이 많다. 동사 종류를 먼저 구분하면 지문의 논리 구조가 보인다.",
+        summary: "긴 문장에서도 A와 중심 동사를 먼저 찾으세요. 그 뒤의 말이 A를 설명하는지, 동사가 닿는 대상인지 살펴보세요.",
         quizzes: [
           { q: "밑줄 친 동사의 종류가 다른 하나는?", opts: ["The result remains uncertain.", "The data supports the hypothesis.", "She appears confident."], answer: 1, exp: "supports는 DO 동사(행동). remains, appears는 상태 동사." },
           { q: "The theory has been widely accepted. 의 핵심 동사 종류는?", opts: ["BE 동사 계열", "순수 DO 동사", "조동사만"], answer: 0, exp: "has been accepted는 BE 동사 계열(수동/상태)." },
@@ -52,7 +57,7 @@ export const HURDLES = [
           { en: "The proposal is ready for review.", ko: "그 제안은 검토할 준비가 되어 있다. → BE 동사로 제안의 상태를 말한다." },
           { en: "The board reviews the proposal.", ko: "이사회는 그 제안을 검토한다. → reviews가 하는 일을 나타낸다." },
         ],
-        summary: "토익 Part 5·6에서는 빈칸에 BE 동사(is/are/was)와 DO 동사(do/does/has) 중 무엇이 와야 하는지 묻는 문제가 자주 나온다. 문맥이 '상태'인지 '행동'인지 먼저 판단하라.",
+        summary: "토익 문장을 읽을 때도 중심 동사를 먼저 찾으세요. be와 일반동사의 쓰임을 살피고, have/do가 돕는 동사로 쓰일 때는 동사구 전체를 보세요.",
         quizzes: [
           { q: "빈칸에 알맞은 것은? The new policy ___ effective immediately.", opts: ["is", "does", "has"], answer: 0, exp: "'효력이 있는 상태이다' = BE 동사 is." },
           { q: "The manager ___ the report every Monday. 빈칸에 알맞은 것은?", opts: ["is", "reviews", "was"], answer: 1, exp: "'검토한다'는 행동 = DO 동사 reviews." },
@@ -69,7 +74,7 @@ export const HURDLES = [
           { en: "The research plan is sound.", ko: "그 연구 계획은 타당하다. → BE 동사로 계획을 평가한다." },
           { en: "The faculty evaluates the research plan.", ko: "교수진은 그 연구 계획을 평가한다. → evaluates가 하는 일을 나타낸다." },
         ],
-        summary: "유학 지원서와 학술 문서는 'be expected to', 'is required' 같은 BE 동사 수동 구문이 많다. 동사가 상태(BE)인지 행위(DO)인지 구분하면 문서의 논조를 정확히 읽을 수 있다.",
+        summary: "학술 문장에서는 be expected to처럼 동사가 여러 단어로 이루어질 수도 있습니다. A와 동사구 전체를 먼저 찾고 관계를 읽으세요.",
         quizzes: [
           { q: "다음 문장에서 핵심 동사의 종류는? Admission decisions are based on holistic review.", opts: ["BE 동사(상태)", "DO 동사(행동)", "둘 다 아님"], answer: 0, exp: "are based on = BE 동사 + 과거분사(상태)." },
           { q: "The university requires all applicants to submit transcripts. 의 동사는?", opts: ["BE 동사", "DO 동사", "조동사"], answer: 1, exp: "requires는 행동을 나타내는 DO 동사." },
