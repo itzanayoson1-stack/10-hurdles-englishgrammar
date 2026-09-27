@@ -1,9 +1,3 @@
-/* ================================================================
-   Hurdle 03 — 동사는 문장의 엔진이다 (X-ray 스캔 연출)
-   코랄 #FF4A5A = 주어 · 민트 #3FE0D0 = 목적어 · 골드 #F5A623 = 진짜 엔진(동사)
-   Hurdle 02의 코랄/민트 배지 체계를 재사용하고 골드를 신규 추가
-   ================================================================ */
-
 .wrap {
   display: flex;
   flex-direction: column;
@@ -12,39 +6,40 @@
 }
 
 .headRow { display: flex; justify-content: space-between; align-items: center; }
-.sectionLabel { font-size: 12px; letter-spacing: 0.1em; font-weight: 800; color: #111111; }
+.sectionLabel { font-size: 12px; letter-spacing: 0.1em; font-weight: 800; color: var(--text); }
 
 /* ---------- 예문 박스 ---------- */
 .sentenceBox {
   position: relative;
-  border: 1.5px solid #E0E0E0;
-  border-radius: 16px;
+  border: 1.5px solid var(--text);
+  border-radius: 6px 10px 8px 9px;
   padding: 1.3rem 1.4rem;
-  background: #FFFFFF;
+  background: var(--bg-card);
+  box-shadow: var(--surface-shadow);
   overflow: hidden;
 }
 
 .sentence {
   font-size: 16px;
   line-height: 2.1;
-  color: #111111;
+  color: var(--text);
   margin: 0;
 }
 
 .sSubject {
-  border-bottom: 3px solid #FF4A5A;
+  border-bottom: 3px solid var(--role-sub);
   padding-bottom: 1px;
   font-weight: 700;
 }
 .sObject {
-  border-bottom: 3px solid #3FE0D0;
+  border-bottom: 3px solid var(--role-obj);
   padding-bottom: 1px;
   font-weight: 700;
 }
 
 /* 수식어: 평상시엔 그대로, 스캔 이후(ph2) 흐려짐 */
 .modifier {
-  color: #111111;
+  color: var(--text);
   transition: opacity 0.6s ease, filter 0.6s ease, color 0.6s ease;
 }
 .ph2 .modifier {
@@ -66,12 +61,12 @@
   opacity: 0;
   transform: scale(0.4) rotate(0deg);
   transition: opacity 0.5s ease, transform 0.5s ease;
-  color: #F5A623;
+  color: var(--role-verb);
 }
 .ph2 .gear, .ph1 .gear {
   opacity: 1;
   transform: scale(1) rotate(0deg);
-  animation: gearSpin 1.4s linear infinite;
+  animation: gearSpin .7s ease-out 1;
 }
 @keyframes gearSpin {
   from { transform: rotate(0deg); }
@@ -80,14 +75,15 @@
 
 .realVerb {
   font-weight: 700;
-  color: #111111;
+  color: var(--text);
   transition: font-size 0.5s ease, color 0.5s ease, font-weight 0.5s ease;
 }
 .ph2 .realVerb, .ph1 .realVerb {
   font-size: 1.18em;
   font-weight: 800;
-  color: #B9760A;
-  text-shadow: 0 0 12px rgba(245, 166, 35, 0.35);
+  color: var(--role-verb);
+  text-decoration: underline wavy var(--role-verb);
+  text-underline-offset: 5px;
 }
 
 /* ---------- 스캔 레이저 바 ---------- */
@@ -100,15 +96,15 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, transparent, #3FE0D0, transparent);
-  box-shadow: 0 0 14px 2px rgba(63, 224, 208, 0.6);
+  background: linear-gradient(90deg, transparent, var(--role-obj), transparent);
+  box-shadow: 0 2px 0 rgba(40, 109, 121, .25);
   animation: scanSweep 0.9s cubic-bezier(0.4, 0, 0.6, 1) forwards;
 }
 
 /* ---------- 버튼 ---------- */
 @keyframes btnPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.35); }
-  50% { box-shadow: 0 0 0 8px rgba(245, 166, 35, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(156, 101, 28, .25); }
+  50% { box-shadow: 0 0 0 8px rgba(156, 101, 28, 0); }
 }
 .scanBtn {
   align-self: flex-start;
@@ -117,20 +113,20 @@
   padding: 10px 18px;
   border-radius: 10px;
   border: none;
-  background: #F5A623;
-  color: #FFFFFF;
+  background: var(--role-verb);
+  color: #fff;
   cursor: pointer;
   font-family: inherit;
-  animation: btnPulse 1.8s ease-in-out infinite;
+  box-shadow: 2px 3px 0 var(--border);
 }
 .rescanBtn {
   align-self: flex-start;
   font-size: 13px;
   padding: 8px 14px;
   border-radius: 9px;
-  border: 1px solid #d0d0d0;
-  background: #fff;
-  color: #111111;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
   cursor: pointer;
   font-family: inherit;
 }
@@ -161,44 +157,44 @@
 }
 .subjectBadge {
   border-radius: 50%;
-  background: #FF4A5A;
-  box-shadow: 0 4px 14px rgba(255, 74, 90, 0.35);
+  background: var(--role-sub);
+  box-shadow: 3px 4px 0 rgba(170, 75, 69, .22);
 }
 .objectBadge {
   border-radius: 12px;
-  background: #3FE0D0;
-  box-shadow: 0 4px 14px rgba(63, 224, 208, 0.35);
+  background: var(--role-obj);
+  box-shadow: 3px 4px 0 rgba(40, 109, 121, .22);
 }
 .engineBadge {
   border-radius: 12px;
-  background: #F5A623;
-  box-shadow: 0 4px 14px rgba(245, 166, 35, 0.4);
+  background: var(--role-verb);
+  box-shadow: 3px 4px 0 rgba(156, 101, 28, .22);
 }
 .engineGear {
   font-size: 20px;
-  color: #FFFFFF;
-  animation: gearSpin 2.6s linear infinite;
+  color: #fff;
+  animation: gearSpin .9s ease-out 1;
 }
 
-.badgeKo { font-size: 14px; font-weight: 800; color: #FFFFFF; }
-.badgeEn { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.9); }
-.badgeLabel { font-size: 10px; letter-spacing: 0.1em; font-weight: 800; color: #888888; }
+.badgeKo { font-size: 14px; font-weight: 800; color: #fff; }
+.badgeEn { font-size: 11px; font-weight: 700; color: #fff; }
+.badgeLabel { font-size: 10px; letter-spacing: 0.1em; font-weight: 800; color: var(--text3); }
 
 .arrowTrack { width: 34px; height: 3px; display: flex; align-items: center; }
 .arrowBeam {
   width: 100%;
   height: 3px;
   border-radius: 2px;
-  background: linear-gradient(90deg, #FF4A5A, #F5A623);
+  background: linear-gradient(90deg, var(--role-sub), var(--role-verb));
 }
-.arrowTrack:last-of-type .arrowBeam { background: linear-gradient(90deg, #F5A623, #3FE0D0); }
+.arrowTrack:last-of-type .arrowBeam { background: linear-gradient(90deg, var(--role-verb), var(--role-obj)); }
 
 /* ---------- 하단 요약 ---------- */
 .summary {
   font-size: 13.5px;
-  color: #444444;
+  color: var(--text2);
   line-height: 1.8;
-  background: #FAFAFA;
+  background: var(--bg-alt);
   border-radius: 12px;
   padding: 0.9rem 1.1rem;
   opacity: 0;
@@ -206,9 +202,14 @@
   transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
 }
 .summaryShown { opacity: 1; transform: translateY(0); }
-.summary strong { color: #B9760A; }
+.summary strong { color: var(--role-verb); }
 
 @media (max-width: 520px) {
   .diagram { flex-wrap: wrap; }
   .arrowTrack { width: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gear, .engineGear, .scanBar { animation-duration: .01ms; }
+  .sentenceBox *, .diagram, .summary { transition-duration: .01ms; }
 }

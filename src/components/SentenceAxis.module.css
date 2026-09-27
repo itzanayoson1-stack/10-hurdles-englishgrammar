@@ -1,10 +1,3 @@
-/* ================================================================
-   Hurdle 02 — 문장의 축 (SUBJECT/OBJECT 어원 + 야구 예문)
-   코랄 #FF4A5A = 주어(SUBJECT, 에너지 출발점)
-   민트 #3FE0D0 = 목적어(OBJECT, 에너지 도착점)
-   오프블랙 #111111 = 동사(VERB, 궤적)
-   ================================================================ */
-
 .wrap {
   display: flex;
   flex-direction: column;
@@ -13,14 +6,14 @@
 }
 
 .headRow { display: flex; justify-content: space-between; align-items: center; }
-.sectionLabel { font-size: 12px; letter-spacing: 0.1em; font-weight: 800; color: #111111; }
+.sectionLabel { font-size: 12px; letter-spacing: 0.1em; font-weight: 800; color: var(--text); }
 
 .replay {
   font-size: 13px;
   padding: 7px 13px;
   border-radius: 8px;
-  border: 1px solid #d0d0d0;
-  background: #fff;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
   cursor: pointer;
   font-family: inherit;
 }
@@ -29,10 +22,11 @@
 .stage {
   position: relative;
   min-height: 220px;
-  border: 1.5px solid #E0E0E0;
-  border-radius: 16px;
+  border: 1.5px solid var(--text);
+  border-radius: 6px 10px 8px 9px;
   padding: 1.4rem 1.2rem;
-  background: #FFFFFF;
+  background: var(--bg-card);
+  box-shadow: var(--surface-shadow);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -58,37 +52,37 @@
   width: 88px;
   height: 88px;
   border-radius: 50%;
-  background: #FF4A5A;
+  background: var(--role-sub);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(255, 74, 90, 0.35);
+  box-shadow: 3px 4px 0 rgba(170, 75, 69, .22);
 }
 
 .objectBadge {
   width: 88px;
   height: 88px;
   border-radius: 12px;
-  background: #3FE0D0;
+  background: var(--role-obj);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(63, 224, 208, 0.35);
+  box-shadow: 3px 4px 0 rgba(40, 109, 121, .22);
 }
 
-.badgeKo { font-size: 16px; font-weight: 800; color: #FFFFFF; }
-.badgeEn { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.85); margin-top: 2px; }
+.badgeKo { font-size: 16px; font-weight: 800; color: #fff; }
+.badgeEn { font-size: 11px; font-weight: 700; color: #fff; margin-top: 2px; }
 
-.subArrowUp { font-size: 16px; font-weight: 800; color: #FF4A5A; }
-.objTarget { font-size: 15px; font-weight: 800; color: #3FE0D0; }
+.subArrowUp { font-size: 16px; font-weight: 800; color: var(--role-sub); }
+.objTarget { font-size: 15px; font-weight: 800; color: var(--role-obj); }
 
 .etymRow { display: flex; align-items: center; gap: 4px; margin-top: 2px; }
-.etymSub, .etymOb { font-size: 13px; font-weight: 800; color: #111111; }
-.etymJect { font-size: 13px; font-weight: 800; color: #888888; }
-.etymPlus { font-size: 12px; color: #bbbbbb; }
-.etymDesc { font-size: 11px; color: #888888; text-align: center; }
+.etymSub, .etymOb { font-size: 13px; font-weight: 800; color: var(--text); }
+.etymJect { font-size: 13px; font-weight: 800; color: var(--text3); }
+.etymPlus { font-size: 12px; color: var(--border); }
+.etymDesc { font-size: 11px; color: var(--text3); text-align: center; }
 
 /* ---------- OBJECT 컬럼: 민트, 이미 눈앞에 고정 (확대 등장) ---------- */
 .objCol {
@@ -118,7 +112,7 @@
   width: 0;
   height: 4px;
   border-radius: 2px;
-  background: linear-gradient(90deg, #FF4A5A 0%, #3FE0D0 100%);
+  background: linear-gradient(90deg, var(--role-sub) 0%, var(--role-obj) 100%);
   transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .ph3 .energyBeam, .ph4 .energyBeam { width: 90px; }
@@ -128,11 +122,11 @@
   top: -28px;
   font-size: 13px;
   font-weight: 800;
-  color: #111111;
-  background: #fff;
+  color: var(--text);
+  background: var(--bg-card);
   padding: 2px 8px;
   border-radius: 6px;
-  border: 1px solid #E0E0E0;
+  border: 1px solid var(--border);
   opacity: 0;
   transition: opacity 0.5s ease;
   white-space: nowrap;
@@ -141,10 +135,11 @@
 
 /* ---------- 정지 화면: 예문 ---------- */
 .exWrap {
-  border: 1.5px solid #E0E0E0;
-  border-radius: 16px;
+  border: 1.5px solid var(--text);
+  border-radius: 6px 10px 8px 9px;
   padding: 1.2rem 1.35rem;
-  background: #FFFFFF;
+  background: var(--bg-card);
+  box-shadow: var(--surface-shadow);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -156,51 +151,51 @@
 
 .exRow {
   font-size: 16px;
-  color: #111111;
+  color: var(--text);
   line-height: 2;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   align-items: baseline;
 }
-.exDot { color: #111111; }
-.exArrowDown { font-size: 12px; color: #888888; text-align: center; }
+.exDot { color: var(--text); }
+.exArrowDown { font-size: 12px; color: var(--text3); text-align: center; }
 
 .mSub, .mSubInner {
-  border-bottom: 3px solid #FF4A5A;
+  border-bottom: 3px solid var(--role-sub);
   padding-bottom: 1px;
   font-weight: 700;
-  color: #111111;
+  color: var(--text);
 }
 .mVerb, .mVerbInner {
   font-weight: 700;
-  color: #111111;
-  background: #F3F3F3;
+  color: var(--text);
+  background: var(--bg-alt);
   padding: 1px 6px;
   border-radius: 5px;
 }
 .mObj {
-  border-bottom: 3px solid #3FE0D0;
+  border-bottom: 3px solid var(--role-obj);
   padding-bottom: 1px;
   font-weight: 700;
-  color: #111111;
+  color: var(--text);
 }
 .mObjClause {
-  background: #E8FBF8;
-  border: 1px dashed #3FE0D0;
+  background: #e4eee9;
+  border: 1px dashed var(--role-obj);
   border-radius: 6px;
   padding: 2px 8px;
   font-weight: 600;
-  color: #111111;
+  color: var(--text);
 }
 .mSubInner, .mVerbInner { font-size: 0.95em; }
 
 /* ---------- 범례 ---------- */
-.legend { display: flex; gap: 16px; font-size: 12px; color: #888888; flex-wrap: wrap; }
+.legend { display: flex; gap: 16px; font-size: 12px; color: var(--text3); flex-wrap: wrap; }
 .legend > span { display: inline-flex; align-items: center; }
-.kSub { display: inline-block; width: 12px; height: 12px; background: #FF4A5A; border-radius: 50%; margin-right: 5px; }
-.kVerb { display: inline-block; width: 14px; height: 3px; background: #111111; margin-right: 5px; }
-.kObj { display: inline-block; width: 12px; height: 12px; background: #3FE0D0; border-radius: 3px; margin-right: 5px; }
+.kSub { display: inline-block; width: 12px; height: 12px; background: var(--role-sub); border-radius: 50%; margin-right: 5px; }
+.kVerb { display: inline-block; width: 14px; height: 3px; background: var(--text); margin-right: 5px; }
+.kObj { display: inline-block; width: 12px; height: 12px; background: var(--role-obj); border-radius: 3px; margin-right: 5px; }
 
 @media (max-width: 520px) {
   .stage { grid-template-columns: 1fr; justify-items: center; }

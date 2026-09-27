@@ -16,8 +16,8 @@ export default function Hurdle01Intro() {
   useEffect(() => {
     played.current = false
     const specs = [
-      ['box', '#176476'], ['underline', '#b73b49'], ['bracket', '#176476'],
-      ['box', '#176476'], ['underline', '#b73b49'], ['bracket', '#176476'],
+      ['box', '#286d79'], ['underline', '#aa4b45'], ['bracket', '#286d79'],
+      ['box', '#286d79'], ['underline', '#aa4b45'], ['bracket', '#286d79'],
     ]
     annotations.current = roleRefs.current.map((el, i) => annotate(el, {
       type: specs[i][0], color: specs[i][1], padding: 5,
@@ -59,7 +59,7 @@ export default function Hurdle01Intro() {
     setChoice(index)
     if (index === 1) {
       const mark = annotate(tryRefs.current[1], {
-        type: 'underline', color: '#b73b49', strokeWidth: 2,
+        type: 'underline', color: '#aa4b45', strokeWidth: 2,
         animate: !isReducedMotion(), animationDuration: 400,
       })
       mark.show()
