@@ -100,18 +100,10 @@ export default function App() {
 
   return (
     <div>
-      <div style={{
-        display: 'flex', justifyContent: 'center', alignItems: 'center',
-        gap: '8px', padding: '10px', fontSize: '12px', color: 'var(--text3)',
-        borderBottom: '1px solid var(--border)'
-      }}>
-        <span>현재 레벨: <strong style={{ color: 'var(--text)' }}>{currentLevelLabel}</strong></span>
+      <div className={styles.levelBar}>
+        <span>현재 레벨: <strong>{currentLevelLabel}</strong></span>
         <button
           onClick={handleChangeLevel}
-          style={{
-            background: 'none', border: '1px solid var(--border)', borderRadius: '4px',
-            padding: '2px 10px', fontSize: '11px', color: 'var(--text2)', cursor: 'pointer'
-          }}
         >
           레벨 변경
         </button>

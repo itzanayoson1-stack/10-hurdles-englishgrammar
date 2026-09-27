@@ -13,7 +13,7 @@
 .title::before {
   content: 'QUIZ';
   font-size: 9px;
-  background: rgba(229, 37, 47, 0.08);
+  background: #f3e7e3;
   color: var(--red);
   padding: 3px 7px;
   border-radius: 3px;
@@ -21,11 +21,12 @@
 }
 
 .item {
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: var(--bg-card);
+  border: 1px solid var(--text);
+  border-radius: 5px 8px 6px 7px;
   padding: 14px;
   margin-bottom: 10px;
+  box-shadow: 2px 3px 0 var(--border);
 }
 
 .q {
@@ -53,11 +54,11 @@
 .opt:hover:not(.disabled) {
   border-color: var(--red);
   color: var(--text);
-  background: rgba(229, 37, 47, 0.05);
+  background: #f3e7e3;
 }
 
-.correct { border-color: var(--success) !important; background: rgba(46, 157, 68, 0.08) !important; color: var(--success) !important; }
-.wrong { border-color: var(--red) !important; background: rgba(229, 37, 47, 0.06) !important; color: var(--red) !important; }
+.correct { border-color: var(--success) !important; background: #e1ede5 !important; color: var(--success) !important; }
+.wrong { border-color: var(--red) !important; background: #f3e7e3 !important; color: var(--red) !important; }
 .disabled { cursor: default; pointer-events: none; }
 
 .feedback {
@@ -68,8 +69,8 @@
   line-height: 1.5;
 }
 
-.ok { background: rgba(46, 157, 68, 0.07); color: var(--success); border: 1px solid rgba(46, 157, 68, 0.2); }
-.fail { background: rgba(229, 37, 47, 0.05); color: var(--red); border: 1px solid rgba(229, 37, 47, 0.15); }
+.ok { background: #e1ede5; color: var(--success); border: 1px solid var(--success); }
+.fail { background: #f3e7e3; color: var(--red); border: 1px solid var(--red); }
 
 .score {
   font-size: 13px;
@@ -97,12 +98,12 @@
   transition: background 0.2s, transform 0.1s;
 }
 
-.clearBtn:hover { background: #c81f28; transform: translateY(-1px); }
+.clearBtn:hover { background: #8d3e39; transform: translateY(-1px); }
 .clearBtn:active { transform: translateY(0); }
 
 .toast {
-  background: rgba(46, 157, 68, 0.06);
-  border: 1px solid rgba(46, 157, 68, 0.3);
+  background: #e1ede5;
+  border: 1px solid var(--success);
   border-radius: 8px;
   padding: 1.5rem;
   text-align: center;
